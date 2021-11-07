@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -28,7 +27,7 @@ if (url[2] == '')
 var css = doc(db, url[0], 'css');
 var css = await getDoc(css);
 var style = document.createElement('style');
-style.innerHTML = css.data().github_markdown;
+style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
 
 var html = doc(db, url[0], url[1]);
@@ -47,15 +46,3 @@ function save(){
   dict[url[2]] = encodeURI($('textarea').innerHTML);
   // await setDoc(doc(db, url[0], url[1]), dict);
 }
-
-// const auth = getAuth();
-// signInWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
