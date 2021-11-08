@@ -40,7 +40,7 @@ $('head').appendChild(style);
 async function getData() {
   var html = doc(db, url[0], url[1]);
   var html = await getDoc(html);
-  var html = de(html.data()[url[2]].replace('%0A;', ''));
+  var html = de(html.data()[url[2]].replace('%0A', ''));
   return html;
 }
 getData().then((html) => { $('body').innerHTML = html });
