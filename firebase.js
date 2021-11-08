@@ -28,7 +28,7 @@ if (url[1] == '')
 if (url[1] == 'index')
   url.push('index')
 if (url[2] == '')
-  url.push('index')
+  url[2] = 'index'
 console.log(url)
 
 var css = doc(db, 'source', 'css');
