@@ -19,6 +19,8 @@ const de = decodeURI;
 const en = encodeURI;
 
 var url = de(window.location.href).replace('.html', '').split('//')[1].split('/').slice(1);
+if (url[0] == 'blog')
+  url.slice(1);
 if (url[0] == '')
   url = ['index','index']
 if (url[1] == '')
