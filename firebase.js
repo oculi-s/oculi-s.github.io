@@ -20,15 +20,16 @@ const en = encodeURI;
 
 var url = de(window.location.href).replace('.html', '').split('//')[1].split('/').slice(1);
 if (url[0] == '')
-  url = ['futures']
+  url = ['index','index']
 if (url[1] == '')
   url[1] = 'index'
 if (url[1] == 'index')
   url.push('index')
 if (url[2] == '')
   url.push('index')
+console.log(url)
 
-var css = doc(db, url[0], 'css');
+var css = doc(db, 'source', 'css');
 var css = await getDoc(css);
 var style = document.createElement('style');
 style.innerHTML = css.data()['github_markdown'];
