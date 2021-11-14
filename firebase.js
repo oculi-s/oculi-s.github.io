@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
-import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -44,8 +44,19 @@ $('head').appendChild(style);
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
-    var html = de(html.data()[url[2]].replace('%0A', ''));
-    return html;
+    if (html.data()[url[2]]) {
+        var html = de(html.data()[url[2]].replace('%0A', ''));
+        if (auth.currentUser) {
+            var user = doc(db, 'user', auth.currentUser.uid);
+            var user = await getDoc(user);
+            if (!user.data().auth)
+                html = html.split('</button>').slice(2);
+        } else {
+            html = html.split('</button>').slice(2);
+        }
+        return html;
+    } else
+        return '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
 }
 getData().then((html) => { $('body').innerHTML = html });
 
@@ -67,20 +78,16 @@ async function save() {
     await updateDoc(doc(db, url[0], url[1]), dict);
     await getData().then((html) => { $('body').innerHTML = html });
 }
+console.log(ss)
 
 // 4
 async function signin() {
-    ss.id = $('#id').value;
-    ss.pw = $('#pw').value;
-    signInWithEmailAndPassword(auth, ss.id, ss.pw)
+    signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
-            const user = userCredential.user;
-            window.user = user;
-            console.log(user);
+            window.location.href = window.location.href + 'futures';
         }).catch((e) => {
-            const errorCode = e.code;
-            const errorMessage = e.message;
-            alert(errorMessage);
+            $('span').classList.toggle('hide');
+            // alert(e.code);
         });
 }
 
