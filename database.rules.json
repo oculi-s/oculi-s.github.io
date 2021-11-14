@@ -1,8 +1,9 @@
 {
     "rules": {
-        ".read": "true",
-        "users": {
+        "Users": {
+            ".read": "auth != null",
             "$uid": {
+                ".read": "auth != null",
                 ".write": "$uid === auth.uid"
             }
         }

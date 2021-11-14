@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -14,9 +15,23 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 const db = getFirestore();
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
 const $ = document.querySelector.bind(document);
 const de = decodeURI;
 const en = encodeURI;
+
+signInWithPopup(auth, provider)
+    .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+    }).catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+    });
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
