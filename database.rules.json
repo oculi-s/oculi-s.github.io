@@ -1,11 +1,7 @@
 {
+    /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
     "rules": {
-        "Users": {
-            ".read": "auth != null",
-            "$uid": {
-                ".read": "auth != null",
-                ".write": "$uid === auth.uid"
-            }
-        }
+        ".read": false,
+        ".write": false
     }
 }

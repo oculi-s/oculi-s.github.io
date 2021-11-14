@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -15,23 +15,11 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 const db = getFirestore();
+const ss = sessionStorage;
 const auth = getAuth();
-const provider = new GoogleAuthProvider();
 const $ = document.querySelector.bind(document);
 const de = decodeURI;
 const en = encodeURI;
-
-signInWithPopup(auth, provider)
-    .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-    }).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-    });
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
@@ -52,6 +40,7 @@ var style = document.createElement('style');
 style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
 
+// 1
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
@@ -60,6 +49,7 @@ async function getData() {
 }
 getData().then((html) => { $('body').innerHTML = html });
 
+// 2
 function edit() {
     $('section').innerHTML = '<textarea>';
     getData().then((html) => { $('textarea').value = html });
@@ -68,6 +58,7 @@ function edit() {
     this.classList.toggle('hide');
 }
 
+// 3
 async function save() {
     var dict = {};
     dict[url[2]] = en($('textarea').value);
@@ -80,6 +71,23 @@ async function save() {
     console.log(this)
     this.classList.toggle('hide');
 }
+
+// 4
+async function signin() {
+    ss.id = $('#id').value;
+    ss.pw = $('#pw').value;
+    signInWithEmailAndPassword(auth, ss.id, ss.pw)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user)
+        }).catch((e) => {
+            const errorCode = e.code;
+            const errorMessage = e.message;
+            alert(errorMessage);
+        });
+}
+
 window.getData = getData;
 window.edit = edit;
 window.save = save;
+window.signin = signin;
