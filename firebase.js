@@ -54,8 +54,6 @@ function edit() {
     $('section').innerHTML = '<textarea>';
     getData().then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
-    console.log(this)
-    this.classList.toggle('hide');
 }
 
 // 3
@@ -68,8 +66,6 @@ async function save() {
     }
     await updateDoc(doc(db, url[0], url[1]), dict);
     await getData().then((html) => { $('body').innerHTML = html });
-    console.log(this)
-    this.classList.toggle('hide');
 }
 
 // 4
@@ -79,7 +75,8 @@ async function signin() {
     signInWithEmailAndPassword(auth, ss.id, ss.pw)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user)
+            window.user = user;
+            console.log(user);
         }).catch((e) => {
             const errorCode = e.code;
             const errorMessage = e.message;
