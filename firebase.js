@@ -15,7 +15,6 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 const db = getFirestore();
-const ss = sessionStorage;
 const auth = getAuth();
 const $ = document.querySelector.bind(document);
 const de = decodeURI;
@@ -33,6 +32,8 @@ if (url[1] == 'index')
 if (url[2] == '')
     url[2] = 'index'
 console.log(url)
+while (url.length < 3)
+    url.push('index')
 
 if (auth.currentUser) {
     console.log(auth.currentUser.uid);
@@ -86,7 +87,6 @@ async function save() {
     await updateDoc(doc(db, url[0], url[1]), dict);
     await getData().then((html) => { $('section').innerHTML = html });
 }
-console.log(ss)
 
 // 4
 async function signin() {

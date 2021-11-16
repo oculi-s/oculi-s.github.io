@@ -53,6 +53,7 @@ blockquote>div {
 nav, section{
 	margin: 30;
 	padding: 30;
+    color: var(--text-color);
 	border: 1px solid var(--border-color);
 	border-radius: 6px;
     float: left;
@@ -60,7 +61,10 @@ nav, section{
 
 nav>button{
     width:100%;
-    margin-bottom: 10;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
 }
 
 nav{
