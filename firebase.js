@@ -46,13 +46,13 @@ if (auth.currentUser) {
     if (!user.data().auth){
         var editsave = doc(db, 'source', 'editsave');
         var editsave = await getDoc(editsave);
-        $('body').innerHTML += editsave.index;
+        $('body').innerHTML += editsave.data().index;
     }
 }
 
 var nav = doc(db, 'source', 'nav');
 var nav = await getDoc(nav);
-$('body').innerHTML += nav.index;
+$('body').innerHTML += nav.data().index;
 
 // 1
 async function getData() {
