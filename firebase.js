@@ -40,25 +40,31 @@ var style = document.createElement('style');
 style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
 
+if (auth.currentUser) {
+    var user = doc(db, 'user', auth.currentUser.uid);
+    var user = await getDoc(user);
+    if (!user.data().auth){
+        var editsave = doc(db, 'source', 'editsave');
+        var editsave = await getDoc(editsave);
+        $('body').innerHTML += editsave.index;
+    }
+}
+
+var nav = doc(db, 'source', 'nav');
+var nav = await getDoc(nav);
+$('body').innerHTML += nav.index;
+
 // 1
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
     if (html.data()[url[2]]) {
         var html = de(html.data()[url[2]].replace('%0A', ''));
-        if (auth.currentUser) {
-            var user = doc(db, 'user', auth.currentUser.uid);
-            var user = await getDoc(user);
-            if (!user.data().auth)
-                html = html.split('</button>').slice(2);
-        } else {
-            html = html.split('</button>').slice(2);
-        }
         return html;
     } else
         return '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
 }
-getData().then((html) => { $('body').innerHTML = html });
+getData().then((html) => { $('section').innerHTML = html });
 
 // 2
 function edit() {
@@ -76,7 +82,7 @@ async function save() {
         dict[url[2]] = dict[url[2]].replaceAll('%20%20', '%20');
     }
     await updateDoc(doc(db, url[0], url[1]), dict);
-    await getData().then((html) => { $('body').innerHTML = html });
+    await getData().then((html) => { $('section').innerHTML = html });
 }
 console.log(ss)
 
