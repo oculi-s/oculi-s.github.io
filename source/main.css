@@ -39,7 +39,10 @@ button:hover{
 
 input:focus{
     outline: none;
-    background: 
+}
+
+input{
+    margin-right: 15;
 }
 
 blockquote>div {
@@ -57,6 +60,7 @@ nav, section{
 
 nav>button{
     width:100%;
+    margin-bottom: 10;
 }
 
 nav{

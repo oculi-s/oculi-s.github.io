@@ -35,6 +35,7 @@ if (url[2] == '')
 console.log(url)
 
 if (auth.currentUser) {
+    console.log(auth.currentUser.uid);
     var user = doc(db, 'user', auth.currentUser.uid);
     var user = await getDoc(user);
     if (!user.data().auth){
@@ -55,6 +56,7 @@ var nav = await getDoc(nav);
 $('body').innerHTML += nav.data().index;
 
 // 1
+$('body').innerHTML += '<section></section>';
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
@@ -64,7 +66,7 @@ async function getData() {
     } else
         return '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
 }
-getData().then((html) => { $('body').innerHTML += '<section></section>'; $('section').innerHTML = html });
+getData().then((html) => { $('section').innerHTML = html });
 
 // 2
 function edit() {
