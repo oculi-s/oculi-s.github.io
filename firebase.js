@@ -34,12 +34,6 @@ if (url[2] == '')
     url[2] = 'index'
 console.log(url)
 
-var css = doc(db, 'source', 'css');
-var css = await getDoc(css);
-var style = document.createElement('style');
-style.innerHTML = css.data()['github_markdown'];
-$('head').appendChild(style);
-
 if (auth.currentUser) {
     var user = doc(db, 'user', auth.currentUser.uid);
     var user = await getDoc(user);
@@ -49,6 +43,12 @@ if (auth.currentUser) {
         $('body').innerHTML += editsave.data().index;
     }
 }
+
+var css = doc(db, 'source', 'css');
+var css = await getDoc(css);
+var style = document.createElement('style');
+style.innerHTML = css.data()['github_markdown'];
+$('head').appendChild(style);
 
 var nav = doc(db, 'source', 'nav');
 var nav = await getDoc(nav);
@@ -64,7 +64,7 @@ async function getData() {
     } else
         return '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
 }
-getData().then((html) => { $('section').innerHTML = html });
+getData().then((html) => { $('body').innerHTML += '<section></section>'; $('section').innerHTML = html });
 
 // 2
 function edit() {
