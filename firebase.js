@@ -48,10 +48,7 @@ onAuthStateChanged(auth, async (user) => {
         $('body').innerHTML += nav.data().index;
     } else {
     }
-  });
-  
-if (user) {
-}
+});
 
 var css = doc(db, 'source', 'css');
 var css = await getDoc(css);
