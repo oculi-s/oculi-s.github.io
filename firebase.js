@@ -110,7 +110,7 @@ async function signin() {
 async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
-        location.href = `https://${location.host}`;
+        location.href = `https://${location.host}/blog`;
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
