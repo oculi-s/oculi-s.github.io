@@ -62,7 +62,7 @@ $('body').innerHTML += aside.data().index;
 
 // 1
 $('body').innerHTML += '<section></section>';
-const create = '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
+const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
