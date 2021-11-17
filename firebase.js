@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -31,25 +31,26 @@ if (url[1] == 'index')
     url.push('index')
 if (url[2] == '')
     url[2] = 'index'
-while (url.length < 3){
+while (url.length < 3) {
     url.push('index')
 }
 console.log(url)
 
-console.log(auth.currentUser)
-if (auth.currentUser) {
-    console.log(auth.currentUser.uid);
-    var user = doc(db, 'user', auth.currentUser.uid);
-    var user = await getDoc(user);
-    if (!user.data().auth) {
-        var editsave = doc(db, 'source', 'editsave');
-        var editsave = await getDoc(editsave);
-        $('body').innerHTML += editsave.data().index;
+onAuthStateChanged((user) => {
+    if (user) {
+        console.log(user.uid);
+        var user = doc(db, 'user', user.uid);
+        var user = await getDoc(user);
+        if (!user.data().auth) {
+            var editsave = doc(db, 'source', 'editsave');
+            var editsave = await getDoc(editsave);
+            $('body').innerHTML += editsave.data().index;
+        }
+        var nav = doc(db, 'source', 'nav');
+        var nav = await getDoc(nav);
+        $('body').innerHTML += nav.data().index;
     }
-    var nav = doc(db, 'source', 'nav');
-    var nav = await getDoc(nav);
-    $('body').innerHTML += nav.data().index;
-}
+});
 
 var css = doc(db, 'source', 'css');
 var css = await getDoc(css);
