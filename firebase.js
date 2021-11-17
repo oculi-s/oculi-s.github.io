@@ -44,6 +44,9 @@ if (auth.currentUser) {
         var editsave = await getDoc(editsave);
         $('body').innerHTML += editsave.data().index;
     }
+    var nav = doc(db, 'source', 'nav');
+    var nav = await getDoc(nav);
+    $('body').innerHTML += nav.data().index;
 }
 
 var css = doc(db, 'source', 'css');
@@ -51,10 +54,6 @@ var css = await getDoc(css);
 var style = document.createElement('style');
 style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
-
-var nav = doc(db, 'source', 'nav');
-var nav = await getDoc(nav);
-$('body').innerHTML += nav.data().index;
 
 var aside = doc(db, 'source', 'aside');
 var aside = await getDoc(aside);
