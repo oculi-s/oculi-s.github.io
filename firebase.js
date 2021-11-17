@@ -87,6 +87,7 @@ function edit() {
 // 3
 async function save() {
     var dict = await getData();
+    var dict = dict.data();
     dict[url[2]] = en($('textarea').value);
     dict[url[2]] = dict[url[2]].replaceAll('%0A', '');
     while (dict[url[2]].includes('%20%20')) {
