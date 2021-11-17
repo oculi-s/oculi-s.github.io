@@ -31,10 +31,12 @@ if (url[1] == 'index')
     url.push('index')
 if (url[2] == '')
     url[2] = 'index'
-console.log(url)
-while (url.length < 3)
+while (url.length < 3){
     url.push('index')
+}
+console.log(url)
 
+console.log(auth.currentUser)
 if (auth.currentUser) {
     console.log(auth.currentUser.uid);
     var user = doc(db, 'user', auth.currentUser.uid);
