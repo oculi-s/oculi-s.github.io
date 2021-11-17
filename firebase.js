@@ -62,14 +62,18 @@ $('body').innerHTML += aside.data().index;
 
 // 1
 $('body').innerHTML += '<section></section>';
+const create = '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
 async function getData() {
     var html = doc(db, url[0], url[1]);
     var html = await getDoc(html);
-    if (url[2] in html.data()) {
-        var html = de(html.data()[url[2]].replace('%0A', ''));
-        return html;
+    if (html.data()) {
+        if (url[2] in html.data()) {
+            var html = de(html.data()[url[2]].replace('%0A', ''));
+            return html;
+        } else
+            return create;
     } else
-        return '<section>파일이 존재하지 않습니다.<br><button onclick=edit()>create</button></section>';
+        return create;
 }
 getData().then((html) => { $('section').innerHTML = html });
 
