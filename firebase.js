@@ -37,6 +37,8 @@ while (url.length < 3) {
 console.log(url)
 
 var user = getAuth().currentUser;
+console.log(user);
+console.log(getAuth().currentUser);
 if (user) {
     console.log(user.uid);
     var user = await getDoc(doc(db, 'user', user.uid));
