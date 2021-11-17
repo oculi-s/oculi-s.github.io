@@ -50,7 +50,7 @@ blockquote>div {
 	margin: 20 auto;
 }
 
-nav, section{
+nav, section, aside{
 	margin: 30;
 	padding: 30;
     color: var(--text-color);
@@ -69,6 +69,13 @@ nav>button{
 
 nav{
     width: 12%;
+	margin-left: 10%;
+}
+
+aside{
+	width: 12%;
+	margin-right: 10%;
+	float: right !important;
 }
 
 section {
@@ -93,7 +100,7 @@ a:hover {
 }
 
 a:not([target]) {
-	color: #585bff;
+	color: #ae58ff;
 }
 
 blockquote {

@@ -99,7 +99,16 @@ async function signin() {
         });
 }
 
+async function signout(){
+    var call = await signOut(auth);
+    if (call){
+        alert('로그아웃 되었습니다.');
+        location.reload();
+    }
+}
+
 window.getData = getData;
 window.edit = edit;
 window.save = save;
 window.signin = signin;
+window.signout = signout;
