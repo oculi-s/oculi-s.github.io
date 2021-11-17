@@ -36,21 +36,17 @@ while (url.length < 3) {
 }
 console.log(url)
 
-onAuthStateChanged(async (user) => {
-    if (user) {
-        console.log(user.uid);
-        var user = doc(db, 'user', user.uid);
-        var user = await getDoc(user);
-        if (!user.data().auth) {
-            var editsave = doc(db, 'source', 'editsave');
-            var editsave = await getDoc(editsave);
-            $('body').innerHTML += editsave.data().index;
-        }
-        var nav = doc(db, 'source', 'nav');
-        var nav = await getDoc(nav);
-        $('body').innerHTML += nav.data().index;
+var user = getAuth().currentUser;
+if (user) {
+    console.log(user.uid);
+    var user = await getDoc(doc(db, 'user', user.uid));
+    if (!user.data().auth) {
+        var editsave = await getDoc(doc(db, 'source', 'editsave'));
+        $('body').innerHTML += editsave.data().index;
     }
-});
+    var nav = await getDoc(doc(db, 'source', 'nav'));
+    $('body').innerHTML += nav.data().index;
+}
 
 var css = doc(db, 'source', 'css');
 var css = await getDoc(css);
