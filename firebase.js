@@ -56,6 +56,10 @@ var nav = doc(db, 'source', 'nav');
 var nav = await getDoc(nav);
 $('body').innerHTML += nav.data().index;
 
+var aside = doc(db, 'source', 'aside');
+var aside = await getDoc(aside);
+$('body').innerHTML += aside.data().index;
+
 // 1
 $('body').innerHTML += '<section></section>';
 async function getData() {
