@@ -36,7 +36,7 @@ while (url.length < 3) {
 }
 console.log(url)
 
-onAuthStateChanged((user) => {
+onAuthStateChanged(async function(user){
     if (user) {
         console.log(user.uid);
         var user = doc(db, 'user', user.uid);
