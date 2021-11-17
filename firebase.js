@@ -107,9 +107,9 @@ async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.reload();
-    }).catch(error){
+    }).catch((e) => {
         alert('로그인 정보가 없습니다.');
-    }
+    });
 }
 
 window.getData = getData;
