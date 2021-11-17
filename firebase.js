@@ -40,7 +40,7 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log(user.uid);
         var user = await getDoc(doc(db, 'user', user.uid));
-        if (!user.data().auth) {
+        if (user.data().auth) {
             var editsave = await getDoc(doc(db, 'source', 'editsave'));
             $('body').innerHTML += editsave.data().index;
         }
