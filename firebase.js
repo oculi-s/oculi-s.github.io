@@ -92,7 +92,7 @@ async function save() {
     while (dict[url[2]].includes('%20%20')) {
         dict[url[2]] = dict[url[2]].replaceAll('%20%20', '%20');
     }
-    await updateDoc(doc(db, url[0], url[1]), dict);
+    await setDoc(doc(db, url[0], url[1]), dict);
     await getData().then((html) => { $('section').innerHTML = html });
 }
 
