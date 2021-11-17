@@ -39,7 +39,7 @@ if (auth.currentUser) {
     console.log(auth.currentUser.uid);
     var user = doc(db, 'user', auth.currentUser.uid);
     var user = await getDoc(user);
-    if (!user.data().auth){
+    if (!user.data().auth) {
         var editsave = doc(db, 'source', 'editsave');
         var editsave = await getDoc(editsave);
         $('body').innerHTML += editsave.data().index;
@@ -99,11 +99,12 @@ async function signin() {
         });
 }
 
-async function signout(){
-    var call = await signOut(auth);
-    if (call){
+async function signout() {
+    signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.reload();
+    }).catch(error){
+        alert('로그인 정보가 없습니다.');
     }
 }
 
