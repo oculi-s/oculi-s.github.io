@@ -1,4 +1,4 @@
-var d1 = `type,Coal,Oil,Natural gas,Nuclear,Hydro,Biofuels and waste,Other
+window.d1 = `type,Coal,Oil,Natural gas,Nuclear,Hydro,Biofuels and waste,Other
 2005,26.08,34.97,20.54,6.29,2.20,9.30,0.62
 2006,26.86,34.41,20.45,6.17,2.21,9.25,0.64
 2007,27.54,33.79,20.78,5.85,2.19,9.17,0.69
@@ -16,7 +16,7 @@ var d1 = `type,Coal,Oil,Natural gas,Nuclear,Hydro,Biofuels and waste,Other
 2019,26.77,30.89,23.21,5.02,2.51,9.37,2.23
 `
 
-var d2 = `type,Coal,Oil,Natural gas,Nuclear,Hydro,Biofuels and waste,Other
+window.d2 = `type,Coal,Oil,Natural gas,Nuclear,Hydro,Biofuels and waste,Other
 2005,26.08,34.97,20.54,6.29,2.20,9.30,0.62
 2019,26.77,30.89,23.21,5.02,2.51,9.37,2.23
 `
