@@ -64,8 +64,7 @@ $('body').innerHTML += aside.data().index;
 $('body').innerHTML += '<section></section>';
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
 async function getData() {
-    var html = doc(db, url[0], url[1]);
-    var html = await getDoc(html);
+    var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
             var html = de(html.data()[url[2]].replace('%0A', ''));
@@ -86,8 +85,7 @@ function edit() {
 
 // 3
 async function save() {
-    var dict = await getData();
-    var dict = dict.data();
+    var dict = await getDoc(doc(db, url[0], url[1]));
     dict[url[2]] = en($('textarea').value);
     dict[url[2]] = dict[url[2]].replaceAll('%0A', '');
     while (dict[url[2]].includes('%20%20')) {
