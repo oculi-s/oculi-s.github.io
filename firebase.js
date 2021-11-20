@@ -37,7 +37,7 @@ while (url.length < 3) {
 }
 console.log(url)
 
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, (user) => {
     ss.uid = user.uid;
     ss.log = user.uid != null;
 });
