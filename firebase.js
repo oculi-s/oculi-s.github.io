@@ -98,15 +98,15 @@ function edit() {
     $('section').innerHTML = '<textarea>';
     getData().then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
+    $('textarea').addEventListener('keydown', e => {
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            save();
+        }
+    });
 }
 
 // 3
-$('textarea').addEventListener('keydown', e => {
-    if (e.ctrlKey && e.key === 's') {
-        e.preventDefault();
-        save();
-    }
-});
 async function save() {
     var dict = await getDoc(doc(db, url[0], url[1]));
     dict = dict.data();
