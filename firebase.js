@@ -77,6 +77,8 @@ async function getData() {
         return create;
 }
 function setData(html) {
+    while($('body>script'))
+        $('body').remove($('body>script'));
     if (html.includes('<script')) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
