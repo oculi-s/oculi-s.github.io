@@ -110,7 +110,7 @@ async function save() {
     while (d.includes('%20%20')) {
         d = d.replaceAll('%20%20', '%20');
     }
-    dict[url[2]] = d;
+    dict[url[2]] = {true:d, false:''};
     await updateDoc(doc(db, url[0], url[1]), dict);
     getData().then((html) => setData(html));
 }
