@@ -77,6 +77,7 @@ async function getData() {
 function setData(html) {
     html = html.split('</script>');
     for (var i = 0; i < html.length; i++) {
+        console.log(html[i]);
         if (html[i].includes('<script')) {
             $('body').innerHTML += html[i] + '</script>';
         } else {
@@ -98,11 +99,13 @@ function edit() {
 async function save() {
     var dict = await getDoc(doc(db, url[0], url[1]));
     dict = dict.data();
-    dict[url[2]] = en($('textarea').value);
-    dict[url[2]] = dict[url[2]].replaceAll('%0A', '');
-    while (dict[url[2]].includes('%20%20')) {
-        dict[url[2]] = dict[url[2]].replaceAll('%20%20', '%20');
+    var d = en($('textarea').value);
+    d = d.replaceAll('%0A', '');
+    d = d.replaceAll('%3E%20%3C', '%3E%3C');
+    while (d.includes('%20%20')) {
+        d = d.replaceAll('%20%20', '%20');
     }
+    dict[url[2]] = d;
     await updateDoc(doc(db, url[0], url[1]), dict);
     html = await getData();
     setData(html);
