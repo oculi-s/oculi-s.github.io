@@ -74,7 +74,20 @@ async function getData() {
     } else
         return create;
 }
-getData().then((html) => { $('section').innerHTML = html });
+html = await getData();
+setData(html);
+
+function setData(html){
+    html = html.split('</script>');
+    for (var i=0; i<html.length; i++){
+        if ('<script' in html[i]){
+            $('body').innerHTML += html[i]+'</script>';
+        } else{
+            $('section').innerHTML += html[i];
+        }
+    }
+    
+}
 
 // 2
 function edit() {
@@ -93,7 +106,8 @@ async function save() {
         dict[url[2]] = dict[url[2]].replaceAll('%20%20', '%20');
     }
     await updateDoc(doc(db, url[0], url[1]), dict);
-    await getData().then((html) => { $('section').innerHTML = html });
+    html = await getData();
+    setData(html);
 }
 
 // 4
