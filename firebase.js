@@ -83,7 +83,7 @@ function setData(html) {
             if (html[i].includes('<script')) {
                 $('body').innerHTML += html[i] + '</script>';
             } else {
-                $('section').innerHTML += html[i];
+                $('section').innerHTML = html[i];
             }
         }
     } else {
