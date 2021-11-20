@@ -84,7 +84,10 @@ function setData(html) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
             if (html[i].includes('<script')) {
-                $('body').innerHTML += html[i] + '</script>';
+                var scr = doucment.createElement();
+                scr.innerHTML = html[i];
+                $('body').appendChild(scr);
+                // $('body').innerHTML += html[i] + '</script>';
             } else {
                 $('section').innerHTML = html[i];
             }
