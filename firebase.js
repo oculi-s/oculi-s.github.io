@@ -17,6 +17,7 @@ initializeApp(firebaseConfig);
 window.db = getFirestore();
 window.auth = getAuth();
 window.$ = document.querySelector.bind(document);
+const ss = sessionStorage();
 const de = decodeURI;
 const en = encodeURI;
 
@@ -37,28 +38,27 @@ while (url.length < 3) {
 console.log(url)
 
 onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        console.log(user.uid);
-        var user = await getDoc(doc(db, 'user', user.uid));
-        if (user.data().auth) {
-            var editsave = await getDoc(doc(db, 'source', 'editsave'));
-            $('body').innerHTML += editsave.data().index;
-        }
-        var nav = await getDoc(doc(db, 'source', 'nav'));
-        $('body').innerHTML += nav.data().index;
-    } else {
-    }
+    ss.uid = user.uid;
+    ss.log = user.uid != null;
 });
 
-var css = doc(db, 'source', 'css');
-var css = await getDoc(css);
+var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
 style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
 
+console.log(ss.uid);
+var user = await getDoc(doc(db, 'user', ss.uid));
+
+var editsave = await getDoc(doc(db, 'source', 'editsave'));
+$('body').innerHTML += editsave.data().index[user.data().auth];
+
+var nav = await getDoc(doc(db, 'source', 'nav'));
+$('body').innerHTML += nav.data().index[ss.log];
+
 var aside = doc(db, 'source', 'aside');
 var aside = await getDoc(aside);
-$('body').innerHTML += aside.data().index;
+$('body').innerHTML += aside.data().index[ss.log];
 
 // 1
 $('body').innerHTML += '<section></section>';
