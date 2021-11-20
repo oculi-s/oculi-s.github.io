@@ -38,7 +38,7 @@ while (url.length < 3) {
 console.log(url)
 
 onAuthStateChanged(auth, (user) => {
-    if (user){
+    if (user) {
         ss.uid = user.uid;
         ss.log = true;
     } else {
@@ -53,8 +53,8 @@ style.innerHTML = css.data()['github_markdown'];
 $('head').appendChild(style);
 
 console.log(ss.uid);
-var user = await getDoc(doc(db, 'user', ss.uid));
 
+var user = await getDoc(doc(db, 'user', ss.uid));
 var editsave = await getDoc(doc(db, 'source', 'editsave'));
 $('body').innerHTML += editsave.data().index[user.data().auth];
 var nav = await getDoc(doc(db, 'source', 'nav'));
@@ -81,7 +81,7 @@ function setData(html) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
             if (html[i].includes('<script')) {
-                $('body').innerHTML += html[i]+'</script>';
+                $('body').innerHTML += html[i] + '</script>';
             } else {
                 $('section').innerHTML += html[i];
             }
@@ -112,14 +112,14 @@ async function save() {
     }
     dict[url[2]] = d;
     await updateDoc(doc(db, url[0], url[1]), dict);
-    getData().then((html)=>setData(html));
+    getData().then((html) => setData(html));
 }
 
 // 4
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
-            window.location.href = window.location.href + 'futures';
+            window.location.reload();
         }).catch((e) => {
             $('span').classList.toggle('hide');
             // alert(e.code);
