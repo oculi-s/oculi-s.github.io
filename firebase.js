@@ -75,14 +75,18 @@ async function getData() {
         return create;
 }
 function setData(html) {
-    html = html.split('<script');
-    for (var i = 0; i < html.length; i++) {
-        console.log(html[i]);
-        if (html[i].includes('</script>')) {
-            $('body').innerHTML += '<script' + html[i];
-        } else {
-            $('section').innerHTML += html[i];
+    if (html.includes('<script')) {
+        html = html.split('<script');
+        for (var i = 0; i < html.length; i++) {
+            if (html[i].includes('</script>')) {
+                html[i].split('</script>')
+                $('body').innerHTML += '<script' + html[i];
+            } else {
+                $('section').innerHTML += html[i];
+            }
         }
+    } else {
+        $('section').innerHTML = html;
     }
 }
 getData().then((html) => setData(html));
@@ -107,8 +111,7 @@ async function save() {
     }
     dict[url[2]] = d;
     await updateDoc(doc(db, url[0], url[1]), dict);
-    html = await getData();
-    setData(html);
+    getData().then((html)=>setData(html));
 }
 
 // 4
