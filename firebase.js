@@ -69,7 +69,7 @@ async function getData() {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            var html = de(html.data()[url[2]].replace('%0A', ''));
+            var html = de(html.data()[url[2]][ss.log].replace('%0A', ''));
             return html;
         } else
             return create;
