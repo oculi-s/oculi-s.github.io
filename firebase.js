@@ -134,6 +134,7 @@ async function signout() {
 }
 
 window.getData = getData;
+window.setData = setData;
 window.edit = edit;
 window.save = save;
 window.signin = signin;
