@@ -14,9 +14,9 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-const db = getFirestore();
-const auth = getAuth();
-const $ = document.querySelector.bind(document);
+window.db = getFirestore();
+window.auth = getAuth();
+window.$ = document.querySelector.bind(document);
 const de = decodeURI;
 const en = encodeURI;
 
