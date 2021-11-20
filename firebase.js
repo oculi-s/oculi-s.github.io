@@ -75,11 +75,11 @@ async function getData() {
         return create;
 }
 function setData(html) {
-    html = html.split('</script>');
+    html = html.split('<script');
     for (var i = 0; i < html.length; i++) {
         console.log(html[i]);
-        if (html[i].includes('<script')) {
-            $('body').innerHTML += html[i] + '</script>';
+        if (html[i].includes('</script>')) {
+            $('body').innerHTML += '<script' + html[i];
         } else {
             $('section').innerHTML += html[i];
         }
