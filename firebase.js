@@ -101,6 +101,12 @@ function edit() {
 }
 
 // 3
+$('textarea').addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        save();
+    }
+});
 async function save() {
     var dict = await getDoc(doc(db, url[0], url[1]));
     dict = dict.data();
@@ -110,7 +116,7 @@ async function save() {
     while (d.includes('%20%20')) {
         d = d.replaceAll('%20%20', '%20');
     }
-    dict[url[2]] = {true:d, false:''};
+    dict[url[2]] = { true: d, false: '' };
     await updateDoc(doc(db, url[0], url[1]), dict);
     getData().then((html) => setData(html));
 }
