@@ -74,8 +74,7 @@ async function getData() {
     } else
         return create;
 }
-html = await getData();
-setData(html);
+getData().then((html)=> setData(html));
 
 function setData(html){
     html = html.split('</script>');
