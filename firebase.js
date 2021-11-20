@@ -74,19 +74,18 @@ async function getData() {
     } else
         return create;
 }
-getData().then((html)=> setData(html));
-
-function setData(html){
+function setData(html) {
     html = html.split('</script>');
-    for (var i=0; i<html.length; i++){
-        if ('<script' in html[i]){
-            $('body').innerHTML += html[i]+'</script>';
-        } else{
+    for (var i = 0; i < html.length; i++) {
+        if (html[i].includes('<script')) {
+            $('body').innerHTML += html[i] + '</script>';
+        } else {
             $('section').innerHTML += html[i];
         }
     }
-    
 }
+getData().then((html) => setData(html));
+
 
 // 2
 function edit() {
