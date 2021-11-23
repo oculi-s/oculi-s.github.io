@@ -62,7 +62,7 @@ console.log(ss.uid);
 
 var user = await getDoc(doc(db, 'user', ss.uid));
 var editsave = await getDoc(doc(db, 'source', 'editsave'));
-$('body').innerHTML += editsave.data().index[user.data().auth];
+$('section').innerHTML += editsave.data().index[user.data().auth];
 var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += nav.data().index[ss.log];
 var aside = await getDoc(doc(db, 'source', 'aside'));
@@ -155,12 +155,14 @@ async function signout() {
 _wresize();
 $('body').onresize = _wresize;
 function _wresize() {
-    if (window.outerWidth < 400) {
+    if (window.outerWidth < 600) {
         $('section').classList.add('m-s');
         $('aside').classList.add('m-a');
+        $('nav').classList.add('m-n');
     } else {
         $('section').classList.remove('m-s');
         $('aside').classList.remove('m-a');
+        $('nav').classList.remove('m-n');
     }
 };
 
