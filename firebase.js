@@ -152,13 +152,15 @@ async function signout() {
     });
 }
 
-$('body').addEventListener('resize', function(){
-    if (window.outerWidth < 400){
+_wresize();
+$('body').onresize = _wresize;
+function _wresize() {
+    if (window.outerWidth < 400) {
         $('section').classList.add('mobile');
     } else {
         $('section').classList.remove('mobile');
     }
-})
+};
 
 window.getData = getData;
 window.setData = setData;
