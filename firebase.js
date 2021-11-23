@@ -61,6 +61,7 @@ $('head').appendChild(style);
 console.log(ss.uid);
 
 $('body').innerHTML += '<section></section>';
+$('section').innerHTML = '<article></article>';
 var user = await getDoc(doc(db, 'user', ss.uid));
 var editsave = await getDoc(doc(db, 'source', 'editsave'));
 $('section').innerHTML += editsave.data().index[user.data().auth];
@@ -106,7 +107,7 @@ getData().then((html) => setData(html));
 
 // 2
 function edit() {
-    $('section').innerHTML = '<textarea>';
+    $('article').innerHTML = '<textarea>';
     getData().then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
     $('textarea').addEventListener('keydown', e => {

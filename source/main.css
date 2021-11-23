@@ -14,6 +14,11 @@
     font-size: 10px;
 }
 
+.m-n>button{
+    width: fit-content;
+    font-size: 10px;
+}
+
 .m-n{
     padding: 0;
     margin: 0;
