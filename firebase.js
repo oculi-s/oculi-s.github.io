@@ -152,6 +152,14 @@ async function signout() {
     });
 }
 
+$('body').addEventListener('resize', function(){
+    if (window.outerWidth < 400){
+        $('section').classList.add('mobile');
+    } else {
+        $('section').classList.remove('mobile');
+    }
+})
+
 window.getData = getData;
 window.setData = setData;
 window.edit = edit;
