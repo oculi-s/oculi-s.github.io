@@ -120,17 +120,23 @@ function edit() {
 
 // 3
 async function save() {
-    var dict = await getDoc(doc(db, url[0], url[1]));
-    dict = dict.data();
-    console.log(dict);
     var d = en($('textarea').value);
     d = d.replaceAll('%0A', '');
     d = d.replaceAll('%3E%20%3C', '%3E%3C');
     while (d.includes('%20%20')) {
         d = d.replaceAll('%20%20', '%20');
     }
-    dict[url[2]] = { true: d, false: '' };
-    await updateDoc(doc(db, url[0], url[1]), dict);
+
+    var dict = await getDoc(doc(db, url[0], url[1]));
+    dict = dict.data();
+    if (dict == undefined) {
+        dict = {};
+        dict[url[2]] = { true: d, false: '' };
+        await setDoc(doc(db, url[0], url[1]), dict);
+    } else {
+        dict[url[2]] = { true: d, false: '' };
+        await updateDoc(doc(db, url[0], url[1]), dict);
+    }
     getData().then((html) => setData(html));
 }
 
