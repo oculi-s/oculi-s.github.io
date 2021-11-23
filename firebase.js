@@ -60,6 +60,7 @@ $('head').appendChild(style);
 
 console.log(ss.uid);
 
+$('body').innerHTML += '<section></section>';
 var user = await getDoc(doc(db, 'user', ss.uid));
 var editsave = await getDoc(doc(db, 'source', 'editsave'));
 $('section').innerHTML += editsave.data().index[user.data().auth];
@@ -69,7 +70,6 @@ var aside = await getDoc(doc(db, 'source', 'aside'));
 $('body').innerHTML += aside.data().index[ss.log];
 
 // 1
-$('body').innerHTML += '<section></section>';
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
 async function getData() {
     var html = await getDoc(doc(db, url[0], url[1]));
