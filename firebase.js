@@ -122,6 +122,7 @@ function edit() {
 async function save() {
     var dict = await getDoc(doc(db, url[0], url[1]));
     dict = dict.data();
+    console.log(dict);
     var d = en($('textarea').value);
     d = d.replaceAll('%0A', '');
     d = d.replaceAll('%3E%20%3C', '%3E%3C');
