@@ -94,11 +94,11 @@ function setData(html) {
                 $('body').appendChild(scr.firstElementChild);
                 // $('body').innerHTML += html[i] + '</script>';
             } else {
-                $('section').innerHTML = html[i];
+                $('article').innerHTML = html[i];
             }
         }
     } else {
-        $('section').innerHTML = html;
+        $('article').innerHTML = html;
     }
 }
 getData().then((html) => setData(html));
