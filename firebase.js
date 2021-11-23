@@ -156,9 +156,11 @@ _wresize();
 $('body').onresize = _wresize;
 function _wresize() {
     if (window.outerWidth < 400) {
-        $('section').classList.add('mobile');
+        $('section').classList.add('m-s');
+        $('aside').classList.add('m-a');
     } else {
-        $('section').classList.remove('mobile');
+        $('section').classList.remove('m-s');
+        $('aside').classList.remove('m-a');
     }
 };
 
