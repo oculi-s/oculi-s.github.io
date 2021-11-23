@@ -47,6 +47,10 @@ onAuthStateChanged(auth, (user) => {
         ss.log = false;
     }
 });
+if (auth.currentUser) {
+    ss.uid = auth.currentUser.uid;
+    ss.log = true;
+}
 
 var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
@@ -78,7 +82,7 @@ async function getData() {
         return create;
 }
 function setData(html) {
-    while($('body>script'))
+    while ($('body>script'))
         $('body').removeChild($('body>script'));
     if (html.includes('<script')) {
         html = html.split('</script>');
