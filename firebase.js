@@ -71,11 +71,11 @@ if (auth.currentUser)
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
-async function getData() {
+async function getData(log) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            var html = de(html.data()[url[2]][ss.log].replace('%0A', ''));
+            var html = de(html.data()[url[2]][log].replace('%0A', ''));
             return html;
         } else
             return create;
@@ -108,13 +108,13 @@ function setScript(script) {
         // $('head').append(scr.firstElementChild);
     }
 }
-getData().then((html) => setData(html)).then((script) => setScript(script));
+getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 
 // 2
 function edit() {
+    ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
-    ss.log = $('input[name="type"]:checked').value;
-    getData().then((html) => { $('textarea').value = html });
+    getData(log).then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
     $('textarea').addEventListener('keydown', e => {
         if (e.ctrlKey && e.key === 's') {
@@ -140,9 +140,9 @@ async function save() {
         dict[url[2]] = { auth: true, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
-        dict[url[2]].true = d;
+        dict[url[2]][ss.edit] = d;
         if (dict[url[2]].auth < 2)
-            dict[url[2]].false = dict[url[2]].auth ? '' : d;
+            dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData().then((html) => setData(html));
