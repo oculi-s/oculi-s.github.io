@@ -55,16 +55,18 @@ console.log(url);
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
-async function getData(x) {
-    var html = await getDoc(doc(db, url[0], url[1]));
-    if (html.data()) {
-        if (url[2] in html.data()) {
-            return de(html.data()[url[2]][x].replace('%0A', ''));;
-        } else {
+
+function getData(x) {
+    getDoc(doc(db, url[0], url[1])).then((html) => {
+        if (html.data()) {
+            if (url[2] in html.data()) {
+                return de(html.data()[url[2]][x].replace('%0A', ''));;
+            } else {
+                return create;
+            }
+        } else
             return create;
-        }
-    } else
-        return create;
+    });
 }
 
 function setData(html) {
@@ -91,6 +93,7 @@ function setScript(script) {
         }
     }
 }
+
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
@@ -153,14 +156,11 @@ function signin() {
             window.location.reload();
             $('body').innerHTML += '<section></section>';
             $('section').innerHTML = '<article></article>';
-            // var user = await getDoc(doc(db, 'user', ss.uid));
-            alert(4);
-            getDoc(doc(db, 'source', 'editsave')).then((editsave) => {
-                $('section').innerHTML += de(editsave.data().index[true])
-            });
-            alert(5);
-            // $('section').innerHTML += de(editsave.data().index[user.data().auth]);
-            alert(6);
+            getDoc(doc(db, 'user', ss.uid)).then((user) => {
+                getDoc(doc(db, 'source', 'editsave')).then((editsave) => {
+                    $('section').innerHTML += de(editsave.data().index[user.data().auth])
+                });
+            })
         }).catch((e) => {
             alert(e.message);
         });
