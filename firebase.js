@@ -39,8 +39,6 @@ while (url.length < 3) {
 };
 console.log(url);
 
-ss.edit = true;
-
 (async() => {
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
@@ -92,6 +90,10 @@ function setScript(script) {
             func();
         }
     }
+}
+ss.edit = true;
+if (!('uid' in ss)) {
+    getData(false).then((html) => setData(html)).then((script) => setScript(script));
 }
 
 // 2
