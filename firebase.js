@@ -146,6 +146,10 @@ async function save() {
 }
 
 // 4
+function onEnterSingin(e){
+    if(e.keyCode == 13)
+        signin();
+}
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
