@@ -58,7 +58,7 @@ if (auth.currentUser){
     ss.uid = auth.currentUser.uid;
     ss.log = true;
 }
-alert(ss.uid);
+alert(auth.currentUser.uid);
 
 (async ()=> {
     var css = await getDoc(doc(db, 'source', 'css'));
