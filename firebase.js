@@ -53,6 +53,7 @@ onAuthStateChanged(auth, async(user) => {
         ss.uid = null;
         ss.log = false;
     }
+    alert(Object.values(ss));
     getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 });
 
@@ -60,7 +61,7 @@ onAuthStateChanged(auth, async(user) => {
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
     style.innerHTML = de(css.data().index[true]);
-    $('head').appendChild(style);
+    $('head').append(style);
     var nav = await getDoc(doc(db, 'source', 'nav'));
     $('body').innerHTML += de(nav.data().index[ss.log]);
     var aside = await getDoc(doc(db, 'source', 'aside'));
