@@ -49,7 +49,8 @@ onAuthStateChanged(auth, async (user) => {
         var user = await getDoc(doc(db, 'user', ss.uid));
         var editsave = await getDoc(doc(db, 'source', 'editsave'));
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
-    } else {
+        ss.edit = user.data().auth;
+} else {
         ss.uid = null;
         ss.log = false;
     }
