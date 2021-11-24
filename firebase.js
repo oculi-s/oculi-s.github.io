@@ -174,7 +174,6 @@ async function signout() {
     });
 }
 
-_wresize();
 $('body').onresize = _wresize;
 function _wresize() {
     if (/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent) || window.innerWidth < 500) {
@@ -193,6 +192,7 @@ function _wresize() {
             $('nav').classList.remove('m-n');
     }
 };
+_wresize();
 
 window.getData = getData;
 window.setData = setData;
