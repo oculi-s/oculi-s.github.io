@@ -103,7 +103,7 @@ function setData(html) {
 }
 function setScript(script){
     for (var i = 0; i < script.length; i++){
-        scr = document.createElement('scr');
+        var scr = document.createElement('scr');
         scr.innerHTML = script[i];
         $('head').append(scr.firstElementChild);
     }
