@@ -13,30 +13,31 @@
     margin-top: 100;
 }
 
-.m-a >button{
+.m-a>button {
     font-size: 10px;
 }
 
-.m-n>button{
+.m-n>button {
     width: fit-content;
     font-size: 10px;
 }
 
-.m-n, .m-a{
-    padding: 0;
-    margin: 0;
+.m-n, .m-a {
+    padding: 5;
+    margin: 5;
     border: none;
     position: absolute;
-    top: 0;
 }
 
-.m-n{
+.m-n {
+    top: 0;
     left: 0;
     width: 80%;
     text-align: left;
 }
 
 .m-a {
+    bottom: 0;
     right: 0;
     width: fit-content;
 }
@@ -53,7 +54,7 @@ div {
     width: 100%;
 }
 
-blockquote{
+blockquote {
     margin-right: 0;
 }
 
@@ -104,19 +105,30 @@ nav>button, aside>button {
     margin-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--border-color);
+}
+
+nav>button:hover, aside>button:hover{
+    background-color: var(--table-color);
+    transition: all .3s;
 }
 
 nav {
-    position: fixed;
-    width: 120;
     left: 10%;
 }
 
 aside {
+    right: 10%;
+}
+nav, aside{
     position: fixed;
     width: 120;
-    margin-right: 10%;
+    background: var(--table-color);
+}
+aside>input {
+    width: 100%;
 }
 
 section {
