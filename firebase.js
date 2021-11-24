@@ -44,7 +44,7 @@ ss.log = false;
 ss.edit = true;
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        ss.uid = user.uid;
+        ss.uid = auth.currentUser.uid;
         ss.log = true;
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
@@ -53,6 +53,10 @@ onAuthStateChanged(auth, async (user) => {
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     }
 });
+if (auth.currentUser){
+    ss.uid = auth.currentUser.uid;
+    ss.log = true;
+}
 
 (async ()=> {
     var css = await getDoc(doc(db, 'source', 'css'));
