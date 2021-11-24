@@ -53,6 +53,10 @@ div {
     width: 100%;
 }
 
+blockquote{
+    margin-right: 0;
+}
+
 table {
     justify-self: center;
 }
