@@ -40,26 +40,6 @@ while (url.length < 3) {
 console.log(url);
 
 ss.edit = true;
-onAuthStateChanged(auth, async function(user) {
-    alert(1)
-    if (auth.currentUser)
-        alert(Object.values(auth.currentUser));
-    if (user) {
-        alert(2)
-        if (auth.currentUser)
-            alert(auth.currentUser);
-        $('body').innerHTML += '<section></section>';
-        $('section').innerHTML = '<article></article>';
-        var user = await getDoc(doc(db, 'user', ss.uid));
-        var editsave = await getDoc(doc(db, 'source', 'editsave'));
-        $('section').innerHTML += de(editsave.data().index[user.data().auth]);
-    } else {
-        ss.uid = null;
-        ss.log = false;
-    }
-    alert(Object.values(ss));
-    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
-});
 
 (async() => {
     var css = await getDoc(doc(db, 'source', 'css'));
@@ -169,17 +149,24 @@ function signin() {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             alert(Object.values(ss));
-            // window.location.reload();
+            window.location.reload();
+            $('body').innerHTML += '<section></section>';
+            $('section').innerHTML = '<article></article>';
+            var user = await getDoc(doc(db, 'user', ss.uid));
+            var editsave = await getDoc(doc(db, 'source', 'editsave'));
+            $('section').innerHTML += de(editsave.data().index[user.data().auth]);
         }).catch((e) => {
             alert(e.message);
         });
+    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 }
 
 async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.href = `https://${location.host}/blog`;
-        ss.clear();
+        ss.uid = null;
+        ss.log = false;
         sessionStorage.clear();
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
