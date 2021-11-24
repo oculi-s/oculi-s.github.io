@@ -162,7 +162,9 @@ async function signin() {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             window.location.reload();
-        }).catch((e) => {});
+        }).catch((e) => {
+            alert(e.message);
+        });
 }
 
 async function signout() {
