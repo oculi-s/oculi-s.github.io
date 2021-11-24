@@ -18,7 +18,7 @@ window.db = getFirestore();
 window.auth = getAuth();
 window.$ = document.querySelector.bind(document);
 window.$$ = document.querySelectorAll.bind(document);
-const ss = localStorage;
+const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
 
