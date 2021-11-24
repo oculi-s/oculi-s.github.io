@@ -146,7 +146,7 @@ async function save() {
 }
 
 // 4
-function onEnterSingin(e){
+function onEnterSignin(e){
     if(e.keyCode == 13)
         signin();
 }
@@ -195,4 +195,4 @@ window.edit = edit;
 window.save = save;
 window.signin = signin;
 window.signout = signout;
-window.onEnterSingin = onEnterSingin;
+window.onEnterSignin = onEnterSignin;
