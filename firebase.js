@@ -18,7 +18,7 @@ window.db = getFirestore();
 window.auth = getAuth();
 window.$ = document.querySelector.bind(document);
 window.$$ = document.querySelectorAll.bind(document);
-const ss = sessionStorage;
+const ss = localStorage;
 const de = decodeURI;
 const en = encodeURI;
 
@@ -154,7 +154,7 @@ function onEnterSignin() {
     if (event.keyCode == 13) {
         signin();
     }
-    alert(sessionStorage)
+    alert(localStorage)
 }
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
