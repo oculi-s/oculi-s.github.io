@@ -142,7 +142,7 @@ function onEnterSignin() {
     }
 }
 
-function signin() {
+async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
             alert(Object.values(userCredential.user));
