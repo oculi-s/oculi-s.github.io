@@ -168,6 +168,7 @@ function signin() {
             alert(Object.values(userCredential.user));
             ss.uid = userCredential.user.uid;
             ss.log = true;
+            alert(Object.values(ss));
             // window.location.reload();
         }).catch((e) => {
             alert(e.message);
