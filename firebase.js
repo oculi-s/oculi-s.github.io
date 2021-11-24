@@ -100,8 +100,8 @@ function setData(html) {
     }
     console.log(script);
 }
-getData().then((html) => setData(html));
-window.onload = function(script){
+getData().then((html) => setData(html)).then(setScript());
+function setScript(script){
     for (var i = 0; i < script.length; i++){
         scr = document.createElement('scr');
         scr.innerHTML = script[i];
