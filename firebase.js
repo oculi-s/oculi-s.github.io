@@ -155,7 +155,7 @@ function signin() {
             $('section').innerHTML = '<article></article>';
             // var user = await getDoc(doc(db, 'user', ss.uid));
             alert(4);
-            getDoc(doc(db, 'source', 'editsave')).then((editsave) {
+            getDoc(doc(db, 'source', 'editsave')).then((editsave) => {
                 $('section').innerHTML += de(editsave.data().index[true])
             });
             alert(5);
