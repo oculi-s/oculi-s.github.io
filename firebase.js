@@ -92,7 +92,7 @@ function setData(html) {
             if (html[i].includes('<script')) {
                 var scr = document.createElement('scr');
                 scr.innerHTML = html[i];
-                $('body').append(scr.firstElementChild);
+                $('head').append(scr.firstElementChild);
                 // $('body').innerHTML += html[i] + '</script>';
             } else {
                 $('article').innerHTML = html[i];
