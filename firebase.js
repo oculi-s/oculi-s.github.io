@@ -155,9 +155,10 @@ function signin() {
             $('section').innerHTML = '<article></article>';
             // var user = await getDoc(doc(db, 'user', ss.uid));
             alert(4);
-            var editsave = await getDoc(doc(db, 'source', 'editsave'));
+            getDoc(doc(db, 'source', 'editsave')).then((editsave) {
+                $('section').innerHTML += de(editsave.data().index[true])
+            });
             alert(5);
-            $('section').innerHTML += de(editsave.data().index[true]);
             // $('section').innerHTML += de(editsave.data().index[user.data().auth]);
             alert(6);
         }).catch((e) => {
