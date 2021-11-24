@@ -83,6 +83,7 @@ async function getData() {
     } else
         return create;
 }
+script = [];
 function setData(html) {
     while ($('body>script'))
         $('body').removeChild($('body>script'));
@@ -90,9 +91,7 @@ function setData(html) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
             if (html[i].includes('<script')) {
-                var scr = document.createElement('scr');
-                scr.innerHTML = html[i];
-                $('head').append(scr.firstElementChild);
+                script.push(html[i]);
                 // $('body').innerHTML += html[i] + '</script>';
             } else {
                 $('article').innerHTML = html[i];
@@ -103,7 +102,13 @@ function setData(html) {
     }
 }
 getData().then((html) => setData(html));
-
+window.onload = function(){
+    for (var i = 0; i < script.length; i++){
+        scr = document.createElement('script');
+        scr.innerHTML = script[i];
+        $('head').append(scr.firstElementChild);
+    }
+}
 
 // 2
 function edit() {
