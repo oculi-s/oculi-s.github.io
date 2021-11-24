@@ -63,7 +63,7 @@ onAuthStateChanged(auth, async (user) => {
     $('body').innerHTML += de(nav.data().index[ss.log]);
     var aside = await getDoc(doc(db, 'source', 'aside'));
     $('body').innerHTML += de(aside.data().index[ss.log]);
-    if (auth.currentUser) {
+    if ($('aside>span')) {
         $('aside>span').innerHTML = auth.currentUser.email;
     }
 })();
