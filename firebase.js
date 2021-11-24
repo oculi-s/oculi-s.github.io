@@ -43,8 +43,6 @@ ss.edit = true;
 onAuthStateChanged(auth, async(user) => {
     alert(user);
     if (user) {
-        ss.uid = user.uid;
-        ss.log = true;
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
         var user = await getDoc(doc(db, 'user', ss.uid));
@@ -161,6 +159,8 @@ function onEnterSignin() {
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
+            ss.uid = userCredential.user.uid;
+            ss.log = true;
             window.location.reload();
         }).catch((e) => {});
 }
