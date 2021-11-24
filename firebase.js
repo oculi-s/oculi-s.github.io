@@ -43,7 +43,6 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         ss.uid = user.uid;
         ss.log = true;
-        $('#id').innerHTML = auth.currentUser.email;
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
         var user = await getDoc(doc(db, 'user', ss.uid));
@@ -67,6 +66,7 @@ var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += de(nav.data().index[ss.log]);
 var aside = await getDoc(doc(db, 'source', 'aside'));
 $('body').innerHTML += de(aside.data().index[ss.log]);
+$('aside>span').innerHTML = auth.currentUser.email;
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
