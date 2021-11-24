@@ -40,7 +40,7 @@ while (url.length < 3) {
 console.log(url);
 
 ss.edit = true;
-onAuthStateChanged(auth, async (user) => {
+onAuthStateChanged(auth, async(user) => {
     if (user) {
         ss.uid = auth.currentUser.uid;
         ss.log = true;
@@ -49,18 +49,18 @@ onAuthStateChanged(auth, async (user) => {
         var user = await getDoc(doc(db, 'user', ss.uid));
         var editsave = await getDoc(doc(db, 'source', 'editsave'));
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
-    } else{
+    } else {
         ss.uid = null;
         ss.log = false;
     }
 });
-if (auth.currentUser){
+if (auth.currentUser) {
     ss.uid = auth.currentUser.uid;
     ss.log = true;
     alert(auth.currentUser.uid);
 }
 
-(async ()=> {
+(async() => {
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
     style.innerHTML = de(css.data().index[true]);
@@ -76,18 +76,18 @@ if (auth.currentUser){
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
-async function getData(log) {
+async function getData(x) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            var html = de(html.data()[url[2]][log].replace('%0A', ''));
-            return html;
+            return de(html.data()[url[2]][x].replace('%0A', ''));;
         } else {
             return create;
         }
     } else
         return create;
 }
+
 function setData(html) {
     var script = [];
     if (html.includes('<script')) {
@@ -103,6 +103,7 @@ function setData(html) {
     }
     return script;
 }
+
 function setScript(script) {
     for (var i = 0; i < script.length; i++) {
         if (script[i].includes('<script>')) {
@@ -175,14 +176,16 @@ async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.href = `https://${location.host}/blog`;
+        ss.clear();
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
 }
 
 $('body').onresize = _wresize;
+
 function _wresize() {
-    if (/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent) || window.innerWidth < 500) {
+    if (window.innerWidth < 500) {
         if ($('section'))
             $('section').classList.add('m-s');
         if ($('aside'))
