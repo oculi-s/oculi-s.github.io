@@ -87,16 +87,13 @@ function setData(html) {
     if (html.includes('<script')) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
-            if (html[i].includes('<script')) {
+            if (html[i].includes('<script'))
                 script.push(html[i]);
-                // $('body').innerHTML += html[i] + '</script>';
-            } else {
+            else if ($('article'))
                 $('article').innerHTML = html[i];
-            }
         }
-    } else {
+    } else if ($('article'))
         $('article').innerHTML = html;
-    }
     console.log(script);
     return script;
 }
