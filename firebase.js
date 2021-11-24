@@ -68,7 +68,7 @@ $('section').innerHTML += editsave.data().index[user.data().auth];
 var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += nav.data().index[ss.log];
 var aside = await getDoc(doc(db, 'source', 'aside'));
-$('body').innerHTML += aside.data().index[ss.log];
+$('body').innerHTML += de(aside.data().index[ss.log]);
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
