@@ -39,7 +39,7 @@ while (url.length < 3) {
 };
 console.log(url);
 
-(async() => {
+async function getWidget() {
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
     style.innerHTML = de(css.data().index[true]);
@@ -51,22 +51,22 @@ console.log(url);
     if ($('aside>span')) {
         $('aside>span').innerHTML = auth.currentUser.email;
     }
-})();
+    $('body').innerHTML += '<section></section>';
+    $('section').innerHTML = '<article></article>';
+};
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
-
-function getData(x) {
-    getDoc(doc(db, url[0], url[1])).then((html) => {
-        if (html.data()) {
-            if (url[2] in html.data()) {
-                return de(html.data()[url[2]][x].replace('%0A', ''));;
-            } else {
-                return create;
-            }
-        } else
+async function getData() {
+    var html = await getDoc(doc(db, url[0], url[1]));
+    if (html.data()) {
+        if (url[2] in html.data()) {
+            return de(html.data()[url[2]][true].replace('%0A', ''));;
+        } else {
             return create;
-    });
+        }
+    } else
+        return create;
 }
 
 function setData(html) {
@@ -97,8 +97,7 @@ function setScript(script) {
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
-if ('log' in ss)
-    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
+getWidget().then(() => { getData(ss.log).then((html) => { setScript(setData(html)) }) });
 
 // 2
 function edit() {
@@ -154,17 +153,13 @@ function signin() {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             window.location.reload();
-            $('body').innerHTML += '<section></section>';
-            $('section').innerHTML = '<article></article>';
-            getDoc(doc(db, 'user', ss.uid)).then((user) => {
-                getDoc(doc(db, 'source', 'editsave')).then((editsave) => {
-                    $('section').innerHTML += de(editsave.data().index[user.data().auth])
-                });
-            })
+            getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
+            // var user = await getDoc(doc(db, 'user', ss.uid));
+            // var editsave = await getDoc(doc(db, 'source', 'editsave'));
+            // $('section').innerHTML += de(editsave.data().index[user.data().auth]);
         }).catch((e) => {
             alert(e.message);
         });
-    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 }
 
 async function signout() {
@@ -204,6 +199,7 @@ window._wresize = _wresize;
 window.ss = ss;
 window.getData = getData;
 window.setData = setData;
+window.setScript = setScript;
 window.edit = edit;
 window.save = save;
 window.signin = signin;
