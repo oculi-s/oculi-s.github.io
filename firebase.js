@@ -39,7 +39,7 @@ while (url.length < 3) {
 }
 console.log(url)
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
     if (user) {
         ss.uid = user.uid;
         ss.log = true;
