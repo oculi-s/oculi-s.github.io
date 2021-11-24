@@ -99,8 +99,8 @@ function setData(html) {
         $('article').innerHTML = html;
     }
     console.log(script);
+    return script;
 }
-getData().then((html) => setData(html)).then(setScript());
 function setScript(script){
     for (var i = 0; i < script.length; i++){
         scr = document.createElement('scr');
@@ -108,6 +108,7 @@ function setScript(script){
         $('head').append(scr.firstElementChild);
     }
 }
+getData().then((html) => setData(html)).then((script) => setScript(script));
 
 // 2
 function edit() {
