@@ -55,7 +55,7 @@ if (auth.currentUser) {
 
 var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
-style.innerHTML = css.data().index;
+style.innerHTML = css.data().index[true];
 $('head').appendChild(style);
 
 console.log(ss.uid);
