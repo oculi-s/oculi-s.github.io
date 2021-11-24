@@ -41,8 +41,9 @@ console.log(url);
 
 ss.edit = true;
 onAuthStateChanged(auth, async function(user) {
-    alert(user);
+    alert(auth.currentUser);
     if (user) {
+        alert(auth.currentUser);
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
         var user = await getDoc(doc(db, 'user', ss.uid));
