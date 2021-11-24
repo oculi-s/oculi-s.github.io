@@ -114,7 +114,7 @@ getData(ss.log).then((html) => setData(html)).then((script) => setScript(script)
 function edit() {
     ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
-    getData(log).then((html) => { $('textarea').value = html });
+    getData(ss.edit).then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
     $('textarea').addEventListener('keydown', e => {
         if (e.ctrlKey && e.key === 's') {
