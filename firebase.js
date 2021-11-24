@@ -141,10 +141,11 @@ async function save() {
     dict = dict.data();
     if (dict == undefined) {
         dict = {};
-        dict[url[2]] = { true: d, false: '' };
+        dict[url[2]] = { auth:true, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
-        dict[url[2]] = { true: d, false: '' };
+        dict[url[2]].true = d;
+        dict[url[2]].false = dict[url[2]].auth ? '' : d;
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData().then((html) => setData(html));
