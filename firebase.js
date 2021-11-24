@@ -159,7 +159,7 @@ function onEnterSignin() {
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
-            alert(Object.values(userCredential))
+            alert(Object.values(userCredential.user));
             ss.uid = userCredential.user.uid;
             ss.log = true;
             // window.location.reload();
