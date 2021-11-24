@@ -57,8 +57,8 @@ onAuthStateChanged(auth, async (user) => {
 if (auth.currentUser){
     ss.uid = auth.currentUser.uid;
     ss.log = true;
+    alert(auth.currentUser.uid);
 }
-alert(auth.currentUser.uid);
 
 (async ()=> {
     var css = await getDoc(doc(db, 'source', 'css'));
