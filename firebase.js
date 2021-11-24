@@ -53,12 +53,8 @@ onAuthStateChanged(auth, async(user) => {
         ss.uid = null;
         ss.log = false;
     }
+    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 });
-if (auth.currentUser) {
-    ss.uid = auth.currentUser.uid;
-    ss.log = true;
-    alert(auth.currentUser.uid);
-}
 
 (async() => {
     var css = await getDoc(doc(db, 'source', 'css'));
@@ -110,17 +106,14 @@ function setScript(script) {
             var func = new Function(script[i].replace('<script>', ''));
             func();
         }
-        // var scr = document.createElement('scr');
-        // scr.innerHTML = script[i];
-        // $('head').append(scr.firstElementChild);
     }
 }
-getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 
 // 2
 function edit() {
     ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
+    console.log(ss.edit);
     getData(ss.edit).then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;";
     $('textarea').addEventListener('keydown', e => {
@@ -153,6 +146,7 @@ async function save() {
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
+    console.log(ss.edit);
     getData(ss.edit).then((html) => setData(html));
 }
 
@@ -166,21 +160,15 @@ async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
             window.location.reload();
-        }).catch((e) => {
-            // $('span').classList.toggle('hide');
-            // alert(e.code);
-        });
+        }).catch((e) => {});
 }
 
 async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.href = `https://${location.host}/blog`;
-<<<<<<< HEAD
         ss.clear();
-=======
         sessionStorage.clear();
->>>>>>> 2e9f3b75eb305104ff00bc7c4ed8c3a9a2c21379
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
@@ -207,6 +195,8 @@ function _wresize() {
 };
 _wresize();
 
+window._wresize = _wresize;
+window.ss = ss;
 window.getData = getData;
 window.setData = setData;
 window.edit = edit;
