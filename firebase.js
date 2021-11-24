@@ -22,8 +22,7 @@ const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
 
-$('head').innerHTML += `  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, 
-maximum-scale=1.0, minimum-scale=1.0">`;
+$('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />`;
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
     url = url.slice(1);
