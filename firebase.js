@@ -40,7 +40,7 @@ while (url.length < 3) {
 console.log(url);
 
 ss.edit = true;
-onAuthStateChanged(auth, async(user) => {
+onAuthStateChanged(auth, async function(user) {
     alert(user);
     if (user) {
         $('body').innerHTML += '<section></section>';
@@ -162,7 +162,7 @@ async function signin() {
             alert(userCredential)
             ss.uid = userCredential.user.uid;
             ss.log = true;
-            window.location.reload();
+            // window.location.reload();
         }).catch((e) => {
             alert(e.message);
         });
