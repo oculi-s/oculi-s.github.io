@@ -167,7 +167,7 @@ async function signout() {
 _wresize();
 $('body').onresize = _wresize;
 function _wresize() {
-    if (window.outerWidth < 600) {
+    if (/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent)) {
         if ($('section'))
             $('section').classList.add('m-s');
         if ($('aside'))
