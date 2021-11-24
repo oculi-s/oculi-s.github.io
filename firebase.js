@@ -66,7 +66,8 @@ var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += de(nav.data().index[ss.log]);
 var aside = await getDoc(doc(db, 'source', 'aside'));
 $('body').innerHTML += de(aside.data().index[ss.log]);
-$('aside>span').innerHTML = auth.currentUser.email;
+if (auth.currentUser)
+    $('aside>span').innerHTML = auth.currentUser.email;
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
