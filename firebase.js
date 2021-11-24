@@ -176,7 +176,11 @@ async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.href = `https://${location.host}/blog`;
+<<<<<<< HEAD
         ss.clear();
+=======
+        sessionStorage.clear();
+>>>>>>> 2e9f3b75eb305104ff00bc7c4ed8c3a9a2c21379
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
