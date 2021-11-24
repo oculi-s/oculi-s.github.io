@@ -148,16 +148,20 @@ function onEnterSignin() {
 function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then(async(userCredential) => {
-            alert(Object.values(userCredential.user));
             ss.uid = userCredential.user.uid;
             ss.log = true;
-            alert(Object.values(ss));
             window.location.reload();
+            alert(1);
             $('body').innerHTML += '<section></section>';
+            alert(2);
             $('section').innerHTML = '<article></article>';
+            alert(3);
             var user = await getDoc(doc(db, 'user', ss.uid));
+            alert(4);
             var editsave = await getDoc(doc(db, 'source', 'editsave'));
+            alert(5);
             $('section').innerHTML += de(editsave.data().index[user.data().auth]);
+            alert(6);
         }).catch((e) => {
             alert(e.message);
         });
