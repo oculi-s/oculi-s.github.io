@@ -51,6 +51,7 @@ onAuthStateChanged(auth, (user) => {
 if (auth.currentUser) {
     ss.uid = auth.currentUser.uid;
     ss.log = true;
+    $('#id').innerHTML = auth.currentUser.email;
 }
 
 var css = await getDoc(doc(db, 'source', 'css'));
