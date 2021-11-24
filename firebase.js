@@ -43,6 +43,12 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         ss.uid = user.uid;
         ss.log = true;
+        $('#id').innerHTML = auth.currentUser.email;
+        $('body').innerHTML += '<section></section>';
+        $('section').innerHTML = '<article></article>';
+        var user = await getDoc(doc(db, 'user', ss.uid));
+        var editsave = await getDoc(doc(db, 'source', 'editsave'));
+        $('section').innerHTML += editsave.data().index[user.data().auth];
     } else {
         ss.uid = null;
         ss.log = false;
@@ -51,21 +57,12 @@ onAuthStateChanged(auth, (user) => {
 if (auth.currentUser) {
     ss.uid = auth.currentUser.uid;
     ss.log = true;
-    $('#id').innerHTML = auth.currentUser.email;
 }
 
 var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
 style.innerHTML = de(css.data().index[true]);
 $('head').appendChild(style);
-
-console.log(ss.uid);
-
-$('body').innerHTML += '<section></section>';
-$('section').innerHTML = '<article></article>';
-var user = await getDoc(doc(db, 'user', ss.uid));
-var editsave = await getDoc(doc(db, 'source', 'editsave'));
-$('section').innerHTML += editsave.data().index[user.data().auth];
 var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += de(nav.data().index[ss.log]);
 var aside = await getDoc(doc(db, 'source', 'aside'));
