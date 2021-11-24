@@ -160,7 +160,7 @@ async function signin() {
         .then((userCredential) => {
             window.location.reload();
         }).catch((e) => {
-            $('span').classList.toggle('hide');
+            // $('span').classList.toggle('hide');
             // alert(e.code);
         });
 }
