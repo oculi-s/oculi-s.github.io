@@ -102,9 +102,9 @@ function setData(html) {
     console.log(script);
     return script;
 }
-function setScript(script){
-    for (var i = 0; i < script.length; i++){
-        if (script[i].includes('<script>')){
+function setScript(script) {
+    for (var i = 0; i < script.length; i++) {
+        if (script[i].includes('<script>')) {
             var func = new Function(script[i].replace('<script>', ''));
             func();
         }
@@ -141,7 +141,7 @@ async function save() {
     dict = dict.data();
     if (dict == undefined) {
         dict = {};
-        dict[url[2]] = { auth:true, true: d, false: '' };
+        dict[url[2]] = { auth: true, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
         dict[url[2]].true = d;
@@ -175,13 +175,19 @@ _wresize();
 $('body').onresize = _wresize;
 function _wresize() {
     if (window.outerWidth < 600) {
-        $('section').classList.add('m-s');
-        $('aside').classList.add('m-a');
-        $('nav').classList.add('m-n');
+        if ($('section'))
+            $('section').classList.add('m-s');
+        if ($('aside'))
+            $('aside').classList.add('m-a');
+        if ($('nav'))
+            $('nav').classList.add('m-n');
     } else {
-        $('section').classList.remove('m-s');
-        $('aside').classList.remove('m-a');
-        $('nav').classList.remove('m-n');
+        if ($('section'))
+            $('section').classList.remove('m-s');
+        if ($('aside'))
+            $('aside').classList.remove('m-a');
+        if ($('nav'))
+            $('nav').classList.remove('m-n');
     }
 };
 
