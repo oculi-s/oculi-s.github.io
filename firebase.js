@@ -48,20 +48,20 @@ async function getWidget() {
     $('body').innerHTML += de(nav.data().index[ss.log]);
     var aside = await getDoc(doc(db, 'source', 'aside'));
     $('body').innerHTML += de(aside.data().index[ss.log]);
-    if ($('aside>span')) {
+    if ($('aside>span'))
         $('aside>span').innerHTML = auth.currentUser.email;
-    }
     $('body').innerHTML += '<section></section>';
     $('section').innerHTML = '<article></article>';
+    _wresize();
 };
 
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
-async function getData() {
+async function getData(x) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            return de(html.data()[url[2]][true].replace('%0A', ''));;
+            return de(html.data()[url[2]][x].replace('%0A', ''));;
         } else {
             return create;
         }
@@ -97,8 +97,13 @@ function setScript(script) {
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
-getWidget().then(() => { getData(ss.log).then((html) => { setScript(setData(html));
-        _wresize(); }) });
+getWidget().then(async() => {
+    var html = await getData(ss.log);
+    var user = await getDoc(doc(db, 'user', ss.uid));
+    var editsave = await getDoc(doc(db, 'source', 'editsave'));
+    $('section').innerHTML += de(editsave.data().index[user.data().auth]);
+    setScript(setData(html));
+});
 
 // 2
 function edit() {
@@ -154,10 +159,6 @@ function signin() {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             window.location.reload();
-            getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
-            // var user = await getDoc(doc(db, 'user', ss.uid));
-            // var editsave = await getDoc(doc(db, 'source', 'editsave'));
-            // $('section').innerHTML += de(editsave.data().index[user.data().auth]);
         }).catch((e) => {
             alert(e.message);
         });
@@ -169,14 +170,12 @@ async function signout() {
         location.href = `https://${location.host}/blog`;
         ss.uid = null;
         ss.log = false;
-        sessionStorage.clear();
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
 }
 
 $('body').onresize = _wresize;
-_wresize();
 
 function _wresize() {
     if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 500) {
