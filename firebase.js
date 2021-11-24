@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPasessionStorageword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -8,7 +8,7 @@ const firebaseConfig = {
     databaseURL: "https://futures-1dff5-default-rtdb.firebaseio.com",
     projectId: "futures-1dff5",
     storageBucket: "futures-1dff5.appspot.com",
-    mesessionStorageagingSenderId: "204808828169",
+    messagingSenderId: "204808828169",
     appId: "1:204808828169:web:6af7aac7a9966fa6854fd8",
     measurementId: "G-2GV70QZBQ2"
 };
@@ -18,7 +18,7 @@ window.db = getFirestore();
 window.auth = getAuth();
 window.$ = document.querySelector.bind(document);
 window.$$ = document.querySelectorAll.bind(document);
-// const sessionStorage = sesessionStorageionStorage;
+const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
 
@@ -39,32 +39,32 @@ while (url.length < 3) {
 };
 console.log(url);
 
-sessionStorage.edit = true;
+ss.edit = true;
 onAuthStateChanged(auth, async(user) => {
     alert(user);
     if (user) {
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
-        var user = await getDoc(doc(db, 'user', sessionStorage.uid));
+        var user = await getDoc(doc(db, 'user', ss.uid));
         var editsave = await getDoc(doc(db, 'source', 'editsave'));
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     } else {
-        sessionStorage.uid = null;
-        sessionStorage.log = false;
+        ss.uid = null;
+        ss.log = false;
     }
-    alert(Object.values(sessionStorage));
-    getData(sessionStorage.log).then((html) => setData(html)).then((script) => setScript(script));
+    alert(Object.values(ss));
+    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 });
 
 (async() => {
-    var csessionStorage = await getDoc(doc(db, 'source', 'csessionStorage'));
+    var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
-    style.innerHTML = de(csessionStorage.data().index[true]);
+    style.innerHTML = de(css.data().index[true]);
     $('head').append(style);
     var nav = await getDoc(doc(db, 'source', 'nav'));
-    $('body').innerHTML += de(nav.data().index[sessionStorage.log]);
+    $('body').innerHTML += de(nav.data().index[ss.log]);
     var aside = await getDoc(doc(db, 'source', 'aside'));
-    $('body').innerHTML += de(aside.data().index[sessionStorage.log]);
+    $('body').innerHTML += de(aside.data().index[ss.log]);
     if ($('aside>span')) {
         $('aside>span').innerHTML = auth.currentUser.email;
     }
@@ -111,10 +111,10 @@ function setScript(script) {
 
 // 2
 function edit() {
-    sessionStorage.edit = $('input[name="type"]:checked').value;
+    ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
-    console.log(sessionStorage.edit);
-    getData(sessionStorage.edit).then((html) => { $('textarea').value = html });
+    console.log(ss.edit);
+    getData(ss.edit).then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;";
     $('textarea').addEventListener('keydown', e => {
         if (e.ctrlKey && e.key === 's') {
@@ -140,14 +140,14 @@ async function save() {
         dict[url[2]] = { auth: true, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
-        dict[url[2]][sessionStorage.edit] = d;
+        dict[url[2]][ss.edit] = d;
         if (dict[url[2]].auth < 2) {
-            dict[url[2]][!sessionStorage.edit] = dict[url[2]].auth ? '' : d;
+            dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    console.log(sessionStorage.edit);
-    getData(sessionStorage.edit).then((html) => setData(html));
+    console.log(ss.edit);
+    getData(ss.edit).then((html) => setData(html));
 }
 
 // 4
@@ -157,14 +157,14 @@ function onEnterSignin() {
     }
 }
 async function signin() {
-    signInWithEmailAndPasessionStorageword(auth, $('#id').value, $('#pw').value)
+    signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
         .then((userCredential) => {
-            alert(userCredential);
-            sessionStorage.uid = userCredential.user.uid;
-            sessionStorage.log = true;
+            alert(userCredential)
+            ss.uid = userCredential.user.uid;
+            ss.log = true;
             window.location.reload();
         }).catch((e) => {
-            alert(e.mesessionStorageage);
+            alert(e.message);
         });
 }
 
@@ -172,8 +172,8 @@ async function signout() {
     signOut(auth).then(() => {
         alert('로그아웃 되었습니다.');
         location.href = `https://${location.host}/blog`;
+        ss.clear();
         sessionStorage.clear();
-        sesessionStorageionStorage.clear();
     }).catch((e) => {
         alert('로그인 정보가 없습니다.');
     });
@@ -184,24 +184,24 @@ $('body').onresize = _wresize;
 function _wresize() {
     if (window.innerWidth < 500) {
         if ($('section'))
-            $('section').clasessionStorageList.add('m-s');
+            $('section').classList.add('m-s');
         if ($('aside'))
-            $('aside').clasessionStorageList.add('m-a');
+            $('aside').classList.add('m-a');
         if ($('nav'))
-            $('nav').clasessionStorageList.add('m-n');
+            $('nav').classList.add('m-n');
     } else {
         if ($('section'))
-            $('section').clasessionStorageList.remove('m-s');
+            $('section').classList.remove('m-s');
         if ($('aside'))
-            $('aside').clasessionStorageList.remove('m-a');
+            $('aside').classList.remove('m-a');
         if ($('nav'))
-            $('nav').clasessionStorageList.remove('m-n');
+            $('nav').classList.remove('m-n');
     }
 };
 _wresize();
 
 window._wresize = _wresize;
-window.sessionStorage = sessionStorage;
+window.ss = ss;
 window.getData = getData;
 window.setData = setData;
 window.edit = edit;
