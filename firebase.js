@@ -41,8 +41,9 @@ console.log(url);
 
 ss.edit = true;
 onAuthStateChanged(auth, async(user) => {
+    alert(user);
     if (user) {
-        ss.uid = auth.currentUser.uid;
+        ss.uid = user.uid;
         ss.log = true;
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
