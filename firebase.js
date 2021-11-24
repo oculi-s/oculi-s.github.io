@@ -55,7 +55,7 @@ if (auth.currentUser) {
 
 var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
-style.innerHTML = css.data()['github_markdown'];
+style.innerHTML = css.data().index;
 $('head').appendChild(style);
 
 console.log(ss.uid);
