@@ -113,6 +113,7 @@ getData().then((html) => setData(html)).then((script) => setScript(script));
 // 2
 function edit() {
     $('article').innerHTML = '<textarea>';
+    ss.log = $('input[name="type"]:checked').value;
     getData().then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;"
     $('textarea').addEventListener('keydown', e => {
