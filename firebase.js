@@ -164,6 +164,7 @@ async function signout() {
     });
 }
 
+alert(window.navigator.userAgent);
 _wresize();
 $('body').onresize = _wresize;
 function _wresize() {
