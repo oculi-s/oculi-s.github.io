@@ -94,7 +94,7 @@ function setScript(script) {
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
-if (ss.log)
+if ('log' in ss)
     getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 
 // 2
