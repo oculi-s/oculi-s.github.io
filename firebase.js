@@ -66,7 +66,7 @@ var user = await getDoc(doc(db, 'user', ss.uid));
 var editsave = await getDoc(doc(db, 'source', 'editsave'));
 $('section').innerHTML += editsave.data().index[user.data().auth];
 var nav = await getDoc(doc(db, 'source', 'nav'));
-$('body').innerHTML += nav.data().index[ss.log];
+$('body').innerHTML += de(nav.data().index[ss.log]);
 var aside = await getDoc(doc(db, 'source', 'aside'));
 $('body').innerHTML += de(aside.data().index[ss.log]);
 
