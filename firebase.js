@@ -54,17 +54,20 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-var css = await getDoc(doc(db, 'source', 'css'));
-var style = document.createElement('style');
-style.innerHTML = de(css.data().index[true]);
-$('head').appendChild(style);
-var nav = await getDoc(doc(db, 'source', 'nav'));
-$('body').innerHTML += de(nav.data().index[ss.log]);
-var aside = await getDoc(doc(db, 'source', 'aside'));
-$('body').innerHTML += de(aside.data().index[ss.log]);
-if (auth.currentUser) {
-    $('aside>span').innerHTML = auth.currentUser.email;
-}
+(async ()=> {
+    var css = await getDoc(doc(db, 'source', 'css'));
+    var style = document.createElement('style');
+    style.innerHTML = de(css.data().index[true]);
+    $('head').appendChild(style);
+    var nav = await getDoc(doc(db, 'source', 'nav'));
+    $('body').innerHTML += de(nav.data().index[ss.log]);
+    var aside = await getDoc(doc(db, 'source', 'aside'));
+    $('body').innerHTML += de(aside.data().index[ss.log]);
+    if (auth.currentUser) {
+        $('aside>span').innerHTML = auth.currentUser.email;
+    }
+})();
+
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
 async function getData(log) {
