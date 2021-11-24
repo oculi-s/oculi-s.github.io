@@ -42,17 +42,16 @@ console.log(url)
 
 ss.uid = null;
 ss.log = false;
-ss.edit = false;
+ss.edit = true;
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         ss.uid = user.uid;
+        ss.log = true;
         $('body').innerHTML += '<section></section>';
         $('section').innerHTML = '<article></article>';
         var user = await getDoc(doc(db, 'user', ss.uid));
         var editsave = await getDoc(doc(db, 'source', 'editsave'));
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
-        ss.edit = user.data().auth;
-        ss.log = true;
     }
 });
 
@@ -73,7 +72,7 @@ async function getData(log) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            var html = de(html.data()[url[2]][ss.edit].replace('%0A', ''));
+            var html = de(html.data()[url[2]][log].replace('%0A', ''));
             return html;
         } else
             return create;
@@ -143,7 +142,7 @@ async function save() {
             dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    getData().then((html) => setData(html));
+    getData(ss.edit).then((html) => setData(html));
 }
 
 // 4
