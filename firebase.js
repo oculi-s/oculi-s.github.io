@@ -83,10 +83,8 @@ async function getData() {
     } else
         return create;
 }
-script = [];
 function setData(html) {
-    while ($('body>script'))
-        $('body').removeChild($('body>script'));
+    var script = [];
     if (html.includes('<script')) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
