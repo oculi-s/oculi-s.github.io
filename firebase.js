@@ -97,7 +97,8 @@ function setScript(script) {
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
-getWidget().then(() => { getData(ss.log).then((html) => { setScript(setData(html)) }) });
+getWidget().then(() => { getData(ss.log).then((html) => { setScript(setData(html));
+        _wresize(); }) });
 
 // 2
 function edit() {
