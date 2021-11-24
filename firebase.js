@@ -92,10 +92,10 @@ function setScript(script) {
     }
 }
 ss.edit = true;
-if (!('uid' in ss)) {
+if (!('uid' in ss))
     ss.log = false;
+if (ss.log)
     getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
-}
 
 // 2
 function edit() {
