@@ -50,15 +50,12 @@ onAuthStateChanged(auth, async (user) => {
         var editsave = await getDoc(doc(db, 'source', 'editsave'));
         $('section').innerHTML += de(editsave.data().index[user.data().auth]);
         ss.edit = user.data().auth;
-} else {
+    } else {
         ss.uid = null;
         ss.log = false;
+        ss.edit = false;
     }
 });
-if (auth.currentUser) {
-    ss.uid = auth.currentUser.uid;
-    ss.log = true;
-}
 
 var css = await getDoc(doc(db, 'source', 'css'));
 var style = document.createElement('style');
