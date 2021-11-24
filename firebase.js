@@ -195,3 +195,4 @@ window.edit = edit;
 window.save = save;
 window.signin = signin;
 window.signout = signout;
+window.onEnterSingin = onEnterSingin;
