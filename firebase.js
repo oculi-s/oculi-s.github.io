@@ -181,6 +181,7 @@ async function signout() {
 }
 
 $('body').onresize = _wresize;
+alert(window.innerWidth);
 
 function _wresize() {
     if (window.innerWidth < 500) {
