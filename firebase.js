@@ -93,7 +93,8 @@ function setScript(script) {
 }
 ss.edit = true;
 if (!('uid' in ss)) {
-    getData(false).then((html) => setData(html)).then((script) => setScript(script));
+    ss.log = false;
+    getData(ss.log).then((html) => setData(html)).then((script) => setScript(script));
 }
 
 // 2
