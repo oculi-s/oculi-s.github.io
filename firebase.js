@@ -28,17 +28,17 @@ var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
     url = url.slice(1);
 if (url[0] == '')
-    url = ['index', 'index']
+    url = ['index', 'index'];
 if (url[1] == '')
-    url[1] = 'index'
+    url[1] = 'index';
 if (url[1] == 'index')
-    url.push('index')
+    url.push('index');
 if (url[2] == '')
-    url[2] = 'index'
+    url[2] = 'index';
 while (url.length < 3) {
-    url.push('index')
-}
-console.log(url)
+    url.push('index');
+};
+console.log(url);
 
 ss.uid = null;
 ss.log = false;
@@ -63,9 +63,9 @@ var nav = await getDoc(doc(db, 'source', 'nav'));
 $('body').innerHTML += de(nav.data().index[ss.log]);
 var aside = await getDoc(doc(db, 'source', 'aside'));
 $('body').innerHTML += de(aside.data().index[ss.log]);
-if (auth.currentUser)
+if (auth.currentUser) {
     $('aside>span').innerHTML = auth.currentUser.email;
-
+}
 // 1
 const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
 async function getData(log) {
@@ -74,8 +74,9 @@ async function getData(log) {
         if (url[2] in html.data()) {
             var html = de(html.data()[url[2]][log].replace('%0A', ''));
             return html;
-        } else
+        } else {
             return create;
+        }
     } else
         return create;
 }
@@ -89,9 +90,9 @@ function setData(html) {
             else if ($('article'))
                 $('article').innerHTML = html[i];
         }
-    } else if ($('article'))
+    } else if ($('article')) {
         $('article').innerHTML = html;
-    console.log(script);
+    }
     return script;
 }
 function setScript(script) {
@@ -112,7 +113,7 @@ function edit() {
     ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
     getData(ss.edit).then((html) => { $('textarea').value = html });
-    $('textarea').style = "width:100%; height:100%;"
+    $('textarea').style = "width:100%; height:100%;";
     $('textarea').addEventListener('keydown', e => {
         if (e.ctrlKey && e.key === 's') {
             e.preventDefault();
@@ -138,17 +139,19 @@ async function save() {
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
         dict[url[2]][ss.edit] = d;
-        if (dict[url[2]].auth < 2)
+        if (dict[url[2]].auth < 2) {
             dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
+        }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData(ss.edit).then((html) => setData(html));
 }
 
 // 4
-function onEnterSignin(){
-    if(event.keyCode == 13)
+function onEnterSignin() {
+    if (event.keyCode == 13) {
         signin();
+    }
 }
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
