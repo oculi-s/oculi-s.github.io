@@ -84,7 +84,7 @@ async function getData() {
         return create;
 }
 function setData(html) {
-    var script = [];
+    script = [];
     if (html.includes('<script')) {
         html = html.split('</script>');
         for (var i = 0; i < html.length; i++) {
@@ -98,9 +98,10 @@ function setData(html) {
     } else {
         $('article').innerHTML = html;
     }
+    console.log(script);
 }
 getData().then((html) => setData(html));
-window.onload = function(){
+window.onload = function(script){
     for (var i = 0; i < script.length; i++){
         scr = document.createElement('script');
         scr.innerHTML = script[i];
