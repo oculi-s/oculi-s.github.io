@@ -142,7 +142,8 @@ async function save() {
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
         dict[url[2]].true = d;
-        dict[url[2]].false = dict[url[2]].auth ? '' : d;
+        if (dict[url[2]].auth < 2)
+            dict[url[2]].false = dict[url[2]].auth ? '' : d;
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData().then((html) => setData(html));
