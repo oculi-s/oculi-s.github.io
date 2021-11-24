@@ -154,6 +154,7 @@ function onEnterSignin() {
     if (event.keyCode == 13) {
         signin();
     }
+    alert(sessionStorage)
 }
 async function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
