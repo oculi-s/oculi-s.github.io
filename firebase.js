@@ -151,16 +151,14 @@ function signin() {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             window.location.reload();
-            alert(1);
             $('body').innerHTML += '<section></section>';
-            alert(2);
             $('section').innerHTML = '<article></article>';
-            alert(3);
-            var user = await getDoc(doc(db, 'user', ss.uid));
+            // var user = await getDoc(doc(db, 'user', ss.uid));
             alert(4);
             var editsave = await getDoc(doc(db, 'source', 'editsave'));
             alert(5);
-            $('section').innerHTML += de(editsave.data().index[user.data().auth]);
+            $('section').innerHTML += de(editsave.data().index[true]);
+            // $('section').innerHTML += de(editsave.data().index[user.data().auth]);
             alert(6);
         }).catch((e) => {
             alert(e.message);
@@ -181,6 +179,7 @@ async function signout() {
 }
 
 $('body').onresize = _wresize;
+_wresize();
 
 function _wresize() {
     if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 500) {
@@ -199,7 +198,6 @@ function _wresize() {
             $('nav').classList.remove('m-n');
     }
 };
-_wresize();
 
 window._wresize = _wresize;
 window.ss = ss;
