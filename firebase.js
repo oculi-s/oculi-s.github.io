@@ -148,7 +148,6 @@ async function save() {
         if (!dict[url[2]])
             dict[url[2]] = { auth: 1 };
         dict[url[2]][ss.edit] = d;
-        dict[url[2]][!ss.edit] = '';
         if (dict[url[2]].auth < 2)
             dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
         await updateDoc(doc(db, url[0], url[1]), dict);
