@@ -71,9 +71,8 @@ async function getData(x) {
             if (!r.includes(iscode))
                 r = r.replace('%0A', '');
             return de(r);
-        } else {
+        } else
             return create;
-        }
     } else
         return create;
 }
@@ -88,9 +87,8 @@ function setData(html) {
             else if ($('article'))
                 $('article').innerHTML = html[i];
         }
-    } else if ($('article')) {
+    } else if ($('article'))
         $('article').innerHTML = html;
-    }
     return script;
 }
 
@@ -153,7 +151,7 @@ async function save() {
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    getData(ss.edit).then((html) => setData(html)).then
+    getData(ss.edit).then((html) => setData(html));
     $('head').append(prp);
 }
 
