@@ -207,7 +207,6 @@ function _wresize() {
 };
 
 window._wresize = _wresize;
-window.ss = ss;
 window.getData = getData;
 window.setData = setData;
 window.setScript = setScript;
@@ -216,4 +215,3 @@ window.save = save;
 window.signin = signin;
 window.signout = signout;
 window.onEnterSignin = onEnterSignin;
-// $('head').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
