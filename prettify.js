@@ -1,4 +1,4 @@
-!function(){/*
+window.onload = function(){/*
 
  Copyright (C) 2013 Google Inc.
 
