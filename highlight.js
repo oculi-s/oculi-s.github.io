@@ -1147,4 +1147,3 @@
     const n=e.replace("grmr_","").replace("_","-");je.registerLanguage(n,Ue[e])}
     return je}()
     ;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
-hljs.initHighlightingOnLoad();

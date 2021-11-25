@@ -217,3 +217,4 @@ window.save = save;
 window.signin = signin;
 window.signout = signout;
 window.onEnterSignin = onEnterSignin;
+hljs.initHighlightingOnLoad();
