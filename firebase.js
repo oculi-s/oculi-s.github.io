@@ -145,6 +145,8 @@ async function save() {
         dict[url[2]] = { auth: true, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
+        if (!dict[url[2]])
+            dict[url[2]] = {};
         dict[url[2]][ss.edit] = d;
         if (dict[url[2]].auth < 2) {
             dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
