@@ -1147,5 +1147,3 @@ window.hljs=function(){"use strict";var e={exports:{}};function n(e){
     const n=e.replace("grmr_","").replace("_","-");je.registerLanguage(n,Ue[e])}
     return je}()
     ;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
-
-    window.onload = ()=>{hljs.initHighlightingOnLoad();};
