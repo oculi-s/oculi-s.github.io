@@ -69,10 +69,7 @@ async function getData(x) {
             var r = html.data()[url[2]][x]
             if (!r.includes(iscode))
                 r = r.replace('%0A', '');
-            r = de(r);
-            if (r.includes(de(iscode)))
-                r = r.replace('<', en('<')).replace('>'.en('>'));
-            return r;
+            return de(r);
         } else {
             return create;
         }
