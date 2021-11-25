@@ -156,7 +156,10 @@ async function save() {
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    getData(ss.edit).then((html) => setData(html)).then($('head').append(prp))
+    getData(ss.edit).then((html) => {
+        setData(html);
+        $('head').append(prp);
+    })
 }
 
 // 4
