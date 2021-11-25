@@ -206,7 +206,6 @@ function _wresize() {
     }
 };
 
-window._wresize = _wresize;
 window.getData = getData;
 window.setData = setData;
 window.setScript = setScript;
