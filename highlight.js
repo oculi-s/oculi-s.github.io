@@ -39,3 +39,4 @@ begin:e.IDENT_RE+"::",keywords:u},{className:"class",
 beginKeywords:"enum class struct union",end:/[{;:<>=]/,contains:[{
 beginKeywords:"final class struct"},e.TITLE_MODE]}]),exports:{preprocessor:o,
 strings:i,keywords:u}}}})();hljs.registerLanguage("c",e)})();
+hljs.initHighlightingOnLoad();

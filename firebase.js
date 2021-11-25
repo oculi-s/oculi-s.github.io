@@ -30,9 +30,6 @@ $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.co
 var scr = document.createElement('script');
 scr.src = `/blog/highlight.js`;
 $('head').append(scr);
-var scr = document.createElement('script');
-scr.innerHTML = `hljs.initHighlightingOnLoad();`;
-$('head').append(scr);
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
