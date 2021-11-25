@@ -215,3 +215,4 @@ window.save = save;
 window.signin = signin;
 window.signout = signout;
 window.onEnterSignin = onEnterSignin;
+$('body').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
