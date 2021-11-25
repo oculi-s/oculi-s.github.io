@@ -142,15 +142,15 @@ async function save() {
     dict = dict.data();
     if (dict == undefined) {
         dict = {};
-        dict[url[2]] = { auth: true, true: d, false: '' };
+        dict[url[2]] = { auth: 1, true: d, false: '' };
         await setDoc(doc(db, url[0], url[1]), dict);
     } else {
         if (!dict[url[2]])
-            dict[url[2]] = {};
+            dict[url[2]] = { auth: 1 };
         dict[url[2]][ss.edit] = d;
-        if (dict[url[2]].auth < 2) {
+        dict[url[2]][!ss.edit] = '';
+        if (dict[url[2]].auth < 2)
             dict[url[2]][!ss.edit] = dict[url[2]].auth ? '' : d;
-        }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData(ss.edit).then((html) => setData(html));
