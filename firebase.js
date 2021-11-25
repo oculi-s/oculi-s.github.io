@@ -134,7 +134,7 @@ function edit() {
 // 3
 async function save() {
     var d = en($('textarea').value);
-    if (!r.includes(iscode)){
+    if (!d.includes(iscode)){
         d = d.replaceAll('%0A', '');
         d = d.replaceAll('%3E%20%3C', '%3E%3C');
         while (d.includes('%20%20')) {
