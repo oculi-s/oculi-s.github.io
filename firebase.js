@@ -216,4 +216,4 @@ window.save = save;
 window.signin = signin;
 window.signout = signout;
 window.onEnterSignin = onEnterSignin;
-$('head').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
+// $('head').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
