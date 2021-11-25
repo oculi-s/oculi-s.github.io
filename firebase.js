@@ -155,9 +155,9 @@ async function save() {
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData(ss.edit).then((html) => setData(html));
-    if (ss.prp) {
+    if (ss.prp == true) {
         console.log('prp')
-        location.reload();
+        window.location.reload();
     }
 }
 
@@ -172,7 +172,7 @@ function signin() {
         .then(async(userCredential) => {
             ss.uid = userCredential.user.uid;
             ss.log = true;
-            location.reload();
+            window.location.reload();
         }).catch((e) => {
             alert(e.message);
         });
