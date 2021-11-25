@@ -156,17 +156,14 @@ async function save() {
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    getData(ss.edit).then((html) => {
-        setData(html);
-        $('head').append(prp);
-    })
+    getData(ss.edit).then((html) => setData(html)).then
+    $('head').append(prp);
 }
 
 // 4
 function onEnterSignin() {
-    if (event.keyCode == 13) {
+    if (event.keyCode == 13)
         signin();
-    }
 }
 
 function signin() {
@@ -194,7 +191,7 @@ async function signout() {
 $('body').onresize = _wresize;
 
 function _wresize() {
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 500) {
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
         if ($('section'))
             $('section').classList.add('m-s');
         if ($('aside'))
