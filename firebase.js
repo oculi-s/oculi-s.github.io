@@ -91,7 +91,7 @@ function setData(html) {
         $('article').innerHTML = html;
     }
     if (html.includes(de(iscode)))
-        hljs.initHighlightingOnLoad();
+        hljs.highlightAuto(html);
     return script;
 }
 
