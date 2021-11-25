@@ -3,7 +3,7 @@
   (c) 2006-2021 Ivan Sagalaev and other contributors
   License: BSD-3-Clause
  */
-window.hljs=function(){"use strict";var e={exports:{}};function n(e){
+var hljs=function(){"use strict";var e={exports:{}};function n(e){
     return e instanceof Map?e.clear=e.delete=e.set=()=>{
     throw Error("map is read-only")}:e instanceof Set&&(e.add=e.clear=e.delete=()=>{
     throw Error("set is read-only")
@@ -1147,3 +1147,5 @@ window.hljs=function(){"use strict";var e={exports:{}};function n(e){
     const n=e.replace("grmr_","").replace("_","-");je.registerLanguage(n,Ue[e])}
     return je}()
     ;"object"==typeof exports&&"undefined"!=typeof module&&(module.exports=hljs);
+
+    window.onload = ()=>{hljs.initHighlightingOnLoad();};
