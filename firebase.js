@@ -113,7 +113,10 @@ getWidget().then(async() => {
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
-    $('head').innerHTML += `<script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert'></script>`;
+    var scr = document.createElement('script')
+    scr.src = 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert';
+    $('head').append(scr);
+    // $('head').innerHTML += `<script src='https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert'></script>`;
     // var prettify = await getDoc(doc(db, 'source', 'prettify'));
     // eval(prettify.data().index[true]);
     // window.prettify = prettify.data().index[true];
