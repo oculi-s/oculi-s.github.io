@@ -25,9 +25,8 @@ const iscode = en('</pre>');
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
-$('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">`;
-$('head').innerHTML += `<script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js'>`
-$('head').innerHTML += `<script src='https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushCpp.min.js'>`
+$('head').innerHTML += `<link rel='stylesheet' href='https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night-eighties.css'>`
+$('head').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
@@ -70,7 +69,10 @@ async function getData(x) {
             var r = html.data()[url[2]][x]
             if (!r.includes(iscode))
                 r = r.replace('%0A', '');
-            return de(r);
+            r = de(r);
+            if (r.includes(de(iscode)))
+                r = r.replace('<', en('<')).replace('>'.en('>'));
+            return r;
         } else {
             return create;
         }
