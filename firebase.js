@@ -24,13 +24,14 @@ const en = encodeURI;
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
+$('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`;
 
-$('head').innerHTML += `<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`;
-$('head').innerHTML += "<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js>";
-$('head').innerHTML += "<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/css.min.js>";
-$('head').innerHTML += "<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/html.min.js>";
-$('head').innerHTML += "<script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/javascript.min.js>";
-$('head').innerHTML += `<script>hljs.initHighlightingOnLoad();</script>`;
+var scr = document.createElement('script');
+scr.src = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js>`;
+$('head').append(scr);
+var scr = document.createElement('script');
+scr.innerHTML = `hljs.initHighlightingOnLoad();`;
+$('head').append(scr);
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
