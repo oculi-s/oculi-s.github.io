@@ -69,7 +69,7 @@ async function getData(x) {
         if (url[2] in html.data()) {
             var r = html.data()[url[2]][x];
             ss.prp = r.includes(iscode);
-            if (!ss.prp)
+            if (ss.prp == 'false')
                 r = r.replace('%0A', '');
             return de(r);
         } else
@@ -111,7 +111,7 @@ getWidget().then(async() => {
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
-    if (ss.prp)
+    if (ss.prp == 'true')
         $('head').append(prp);
 });
 
@@ -119,7 +119,6 @@ getWidget().then(async() => {
 function edit() {
     ss.edit = $('input[name="type"]:checked').value;
     $('article').innerHTML = '<textarea>';
-    console.log(ss.edit);
     getData(ss.edit).then((html) => { $('textarea').value = html });
     $('textarea').style = "width:100%; height:100%;";
     $('textarea').addEventListener('keydown', e => {
