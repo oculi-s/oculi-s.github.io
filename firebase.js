@@ -28,9 +28,11 @@ $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.co
 
 var scr = document.createElement('script');
 scr.src = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js`;
+scr.onload = function() { callFunctionFromScript();}
 $('head').append(scr);
 var scr = document.createElement('script');
 scr.innerHTML = `hljs.initHighlightingOnLoad();`;
+scr.onload = function() { callFunctionFromScript();}
 $('head').append(scr);
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
