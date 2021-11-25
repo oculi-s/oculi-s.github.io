@@ -28,6 +28,7 @@ $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.co
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`;
 
 var scr = document.createElement('script');
+src.type = 'mudule';
 scr.src = `/blog/highlight.js`;
 $('head').append(scr);
 
@@ -93,6 +94,8 @@ function setData(html) {
     } else if ($('article')) {
         $('article').innerHTML = html;
     }
+    if (html.includes(de(iscode)))
+        hljs.initHighlightingOnLoad();
     return script;
 }
 
