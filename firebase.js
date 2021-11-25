@@ -90,10 +90,12 @@ function setData(html) {
     } else if ($('article')) {
         $('article').innerHTML = html;
     }
-    if (html.includes(de(iscode)))
-        hljs.highlightAuto(html);
     return script;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    hljs.initHighlightingOnLoad();
+});
 
 function setScript(script) {
     for (var i = 0; i < script.length; i++) {
