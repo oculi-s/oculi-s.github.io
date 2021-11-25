@@ -45,8 +45,6 @@ while (url.length < 3) {
 console.log(url);
 
 async function getWidget() {
-    var prettify = await getDoc(doc(db, 'source', 'prettify'));
-    eval(prettify.data().index[true]);
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
     style.innerHTML = de(css.data().index[true]);
@@ -116,6 +114,8 @@ getWidget().then(async() => {
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
+    var prettify = await getDoc(doc(db, 'source', 'prettify'));
+    eval(prettify.data().index[true]);
 });
 
 // 2
