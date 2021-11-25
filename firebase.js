@@ -21,6 +21,7 @@ window.$$ = document.querySelectorAll.bind(document);
 const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
+const iscode = '<pre><code'
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
@@ -71,7 +72,10 @@ async function getData(x) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            return de(html.data()[url[2]][x].replace('%0A', ''));;
+            var r = html.data()[url[2]][x]
+            if (!r.includes(iscode))
+                r = r.replace('%0A', '');
+            return de(r);
         } else {
             return create;
         }
@@ -133,12 +137,13 @@ function edit() {
 // 3
 async function save() {
     var d = en($('textarea').value);
-    d = d.replaceAll('%0A', '');
-    d = d.replaceAll('%3E%20%3C', '%3E%3C');
-    while (d.includes('%20%20')) {
-        d = d.replaceAll('%20%20', '%20');
+    if (!r.includes(iscode)){
+        d = d.replaceAll('%0A', '');
+        d = d.replaceAll('%3E%20%3C', '%3E%3C');
+        while (d.includes('%20%20')) {
+            d = d.replaceAll('%20%20', '%20');
+        }
     }
-
     var dict = await getDoc(doc(db, url[0], url[1]));
     dict = dict.data();
     if (dict == undefined) {
