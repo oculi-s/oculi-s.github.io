@@ -62,7 +62,7 @@ async function getWidget() {
 };
 
 // 1
-const create = '파일이 존재하지 않습니다.<br><button onclick=edit()>create</button>';
+const create = '<h1>문서가 존재하지 않습니다.</h1>';
 async function getData(x) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
