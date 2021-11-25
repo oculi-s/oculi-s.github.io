@@ -68,7 +68,8 @@ async function getData(x) {
     if (html.data()) {
         if (url[2] in html.data()) {
             var r = html.data()[url[2]][x]
-            if (!r.includes(iscode))
+            ss.prp = r.includes(iscode)
+            if (!ss.prp)
                 r = r.replace('%0A', '');
             return de(r);
         } else
@@ -110,7 +111,8 @@ getWidget().then(async() => {
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
-    $('head').append(prp);
+    if (ss.prp)
+        $('head').append(prp);
 });
 
 // 2
@@ -153,7 +155,8 @@ async function save() {
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData(ss.edit).then((html) => setData(html));
-    $('head').append(prp);
+    if (ss.prp)
+        location.reload();
 }
 
 // 4
