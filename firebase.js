@@ -67,8 +67,8 @@ async function getData(x) {
     var html = await getDoc(doc(db, url[0], url[1]));
     if (html.data()) {
         if (url[2] in html.data()) {
-            var r = html.data()[url[2]][x]
-            ss.prp = r.includes(iscode)
+            var r = html.data()[url[2]][x];
+            ss.prp = r.includes(iscode);
             if (!ss.prp)
                 r = r.replace('%0A', '');
             return de(r);
@@ -155,8 +155,10 @@ async function save() {
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
     getData(ss.edit).then((html) => setData(html));
-    if (ss.prp)
+    if (ss.prp) {
+        console.log('prp')
         location.reload();
+    }
 }
 
 // 4
@@ -170,7 +172,7 @@ function signin() {
         .then(async(userCredential) => {
             ss.uid = userCredential.user.uid;
             ss.log = true;
-            window.location.reload();
+            location.reload();
         }).catch((e) => {
             alert(e.message);
         });
