@@ -22,6 +22,8 @@ const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
 const iscode = en('</pre>');
+var prp = document.createElement('script')
+prp.src = 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert';
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
@@ -113,10 +115,7 @@ getWidget().then(async() => {
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
-
-    var scr = document.createElement('script')
-    scr.src = 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert';
-    $('head').append(scr);
+    $('head').append(prp);
 });
 
 // 2
@@ -157,11 +156,7 @@ async function save() {
         }
         await updateDoc(doc(db, url[0], url[1]), dict);
     }
-    getData(ss.edit).then((html) => setData(html));
-
-    var scr = document.createElement('script')
-    scr.src = 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert';
-    $('head').append(scr);
+    getData(ss.edit).then((html) => setData(html)).then($('head').append(prp))
 }
 
 // 4
