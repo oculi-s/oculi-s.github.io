@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
-import { hljs } from "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js";
+import * as hljs from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -133,7 +133,7 @@ function edit() {
 // 3
 async function save() {
     var d = en($('textarea').value);
-    if (!d.includes(iscode)){
+    if (!d.includes(iscode)) {
         d = d.replaceAll('%0A', '');
         d = d.replaceAll('%3E%20%3C', '%3E%3C');
         while (d.includes('%20%20')) {
