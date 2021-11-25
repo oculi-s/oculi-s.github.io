@@ -1,6 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
+import { hljs } from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js";
+import { c } from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/c.min.js";
+hljs.registerLanguage('c', c);
+document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('pre code').forEach((block) => { hljs.highlightBlock(block); }); });
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -23,10 +27,6 @@ const de = decodeURI;
 const en = encodeURI;
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
-$('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
-$('head').innerHTML += `<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`
-$('head').innerHTML += `<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>`
-
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
@@ -102,7 +102,7 @@ function setScript(script) {
 ss.edit = true;
 if (!('uid' in ss))
     ss.log = false;
-getWidget().then(async() => {
+getWidget().then(async () => {
     var html = await getData(ss.log);
     var user = await getDoc(doc(db, 'user', ss.uid));
     var editsave = await getDoc(doc(db, 'source', 'editsave'));
@@ -160,7 +160,7 @@ function onEnterSignin() {
 
 function signin() {
     signInWithEmailAndPassword(auth, $('#id').value, $('#pw').value)
-        .then(async(userCredential) => {
+        .then(async (userCredential) => {
             ss.uid = userCredential.user.uid;
             ss.log = true;
             window.location.reload();
