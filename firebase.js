@@ -2,8 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
 import { hljs } from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js";
-import { c } from "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/c.min.js";
-hljs.registerLanguage('c', c);
+import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/c.min.js";
 document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('pre code').forEach((block) => { hljs.highlightBlock(block); }); });
 
 const firebaseConfig = {
