@@ -28,7 +28,7 @@ $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.co
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`;
 
 var scr = document.createElement('script');
-scr.src = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js`;
+scr.src = `/blog/highlight.js`;
 $('head').append(scr);
 var scr = document.createElement('script');
 scr.innerHTML = `hljs.initHighlightingOnLoad();`;
