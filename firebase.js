@@ -26,7 +26,6 @@ const iscode = en('</pre>');
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
 $('head').innerHTML += `<link rel='stylesheet' href='https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night-eighties.css'>`
-    // $('body').innerHTML += `<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>`
 
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
@@ -46,6 +45,8 @@ while (url.length < 3) {
 console.log(url);
 
 async function getWidget() {
+    var prettify = await getDoc(doc(db, 'source', 'prettify'));
+    eval(prettify.data().index[true]);
     var css = await getDoc(doc(db, 'source', 'css'));
     var style = document.createElement('style');
     style.innerHTML = de(css.data().index[true]);

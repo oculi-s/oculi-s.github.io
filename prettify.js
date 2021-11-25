@@ -1,4 +1,4 @@
-window.onload = function(){/*
+!function(){/*
 
  Copyright (C) 2013 Google Inc.
 
