@@ -22,7 +22,8 @@
     font-size: 10px;
 }
 
-.m-n, .m-a {
+.m-n,
+.m-a {
     padding: 5;
     margin: 5;
     border: none;
@@ -46,6 +47,7 @@ body {
     margin: 0;
     background: var(--bg-color);
     text-align: center;
+    font-family: sans-serif;
 }
 
 div {
@@ -66,7 +68,8 @@ td {
     text-align: center;
 }
 
-button, input {
+button,
+input {
     background: transparent;
     color: var(--text-color);
     padding: 10px;
@@ -91,7 +94,9 @@ blockquote>div {
     margin: 20 auto;
 }
 
-nav, section, aside {
+nav,
+section,
+aside {
     display: inline-block;
     margin: 30;
     padding: 30;
@@ -100,7 +105,8 @@ nav, section, aside {
     border-radius: 6px;
 }
 
-nav>button, aside>button {
+nav>button,
+aside>button {
     width: 100%;
     margin-bottom: 10px;
     font-size: 20px;
@@ -110,7 +116,8 @@ nav>button, aside>button {
     background-color: var(--border-color);
 }
 
-nav>button:hover, aside>button:hover{
+nav>button:hover,
+aside>button:hover {
     background-color: var(--table-color);
     transition: all .3s;
 }
@@ -122,11 +129,14 @@ nav {
 aside {
     right: 10%;
 }
-nav, aside{
+
+nav,
+aside {
     position: fixed;
     width: 120;
     background: var(--table-color);
 }
+
 aside>input {
     width: 100%;
 }
@@ -165,7 +175,9 @@ blockquote {
     line-height: 2;
 }
 
+
 /* table */
+
 table {
     color: #c9d1d9;
     border-color: gray;
@@ -177,7 +189,8 @@ tr {
     border-top: 1px solid #21262d;
 }
 
-th, td {
+th,
+td {
     padding: 6 13;
     border: 1px solid var(--border-color);
 }
@@ -186,7 +199,9 @@ td {
     background-color: var(--table-color);
 }
 
+
 /* chart */
+
 .highcharts-background {
     fill: var(--table-color);
 }
