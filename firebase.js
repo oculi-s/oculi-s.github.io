@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-auth.js";
+import { hljs } from "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.3.1/build/highlight.min.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAuuLVy94PUS8YtEfhibbtHewCsrImhhfM",
@@ -26,11 +27,6 @@ const iscode = en('</code></pre>');
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">`;
-
-var scr = document.createElement('script');
-scr.type = 'mudule';
-scr.src = `/blog/highlight.js`;
-$('head').append(scr);
 
 var url = de(window.location.href).split('//')[1].split('/').slice(1);
 if (url[0] == 'blog')
