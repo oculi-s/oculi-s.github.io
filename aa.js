@@ -122,7 +122,7 @@ getWidget().then(async() => {
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
     if (ss.prp == 'true') {
-        getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp).data().data);
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => { eval(prp.data().data) });
     };
 })
 
@@ -168,7 +168,7 @@ async function save() {
     };
     getData(ss.edit).then((html) => setData(html));
     if (ss.prp == 'true') {
-        getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp).data().data);
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => { eval(prp.data().data) });
     };
 }
 
