@@ -123,7 +123,7 @@ getWidget().then(async() => {
     setScript(setData(html));
     if (ss.prp == 'true') {
         getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp.data().data));
-        getDoc(doc(db, 'source', 'prettify')).then((prp) => $('section').innerHTML += prp.data().skin);
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => $('section').innerHTML += '<style>' + prp.data().skin + '</style>');
     };
 })
 
@@ -170,7 +170,7 @@ async function save() {
     getData(ss.edit).then((html) => setData(html));
     if (ss.prp == 'true') {
         getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp.data().data));
-        getDoc(doc(db, 'source', 'prettify')).then((prp) => $('section').innerHTML += prp.data().skin);
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => $('section').innerHTML += '<style>' + prp.data().skin + '</style>');
     };
 }
 
