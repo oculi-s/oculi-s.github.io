@@ -122,8 +122,7 @@ getWidget().then(async() => {
     $('section').innerHTML += de(editsave.data().index[user.data().auth]);
     setScript(setData(html));
     if (ss.prp == 'true') {
-        var prettify = await getDoc(doc(db, 'source', 'prettify'));
-        eval(prettify.data().data);
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp).data().data);
     };
 })
 
@@ -168,6 +167,9 @@ async function save() {
         await updateDoc(doc(db, url[0], url[1]), dict);
     };
     getData(ss.edit).then((html) => setData(html));
+    if (ss.prp == 'true') {
+        getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp).data().data);
+    };
 }
 
 // 4
