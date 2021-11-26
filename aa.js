@@ -125,7 +125,7 @@ getWidget().then(async() => {
         getDoc(doc(db, 'source', 'prettify')).then((prp) => eval(prp.data().data));
         getDoc(doc(db, 'source', 'prettify')).then((prp) => $('section').innerHTML += '<style>' + prp.data().skin + '</style>');
     };
-})
+});
 
 // 2
 function edit() {
