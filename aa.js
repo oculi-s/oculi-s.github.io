@@ -22,8 +22,6 @@ const ss = sessionStorage;
 const de = decodeURI;
 const en = encodeURI;
 const iscode = en('</code>');
-var prp = document.createElement('script');
-prp.src = 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?skin=desert';
 
 $('head').innerHTML += `<meta name="viewport" content="width=device-width, initial-scale=1.0"/>`;
 $('head').innerHTML += `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`;
@@ -125,8 +123,7 @@ getWidget().then(async() => {
     setScript(setData(html));
     if (ss.prp == 'true') {
         var prettify = await getDoc(doc(db, 'source', 'prettify'));
-        eval(prettify.index.true);
-        // $('head').append(prp);
+        eval(prettify.data().data);
     };
 })
 
